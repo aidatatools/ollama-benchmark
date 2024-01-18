@@ -1,0 +1,67 @@
+version: 1.0
+modeltypes:
+  - type: chat
+    prompts:
+      - prompt: What are your thoughts on the latest scientific discovery regarding black holes?
+        keywords: science, recent
+  - type: instruct
+    prompts:
+      - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
+        keywords: cooking, recipe
+  - type: completion
+    prompts:
+      - prompt: In a world where time travel is possible, a scientist invents a device that allows people to visit any historical event. One day, a young woman decides to travel back in time to...
+        keywords:
+  - type: question-answer
+    reference: https://www.turing.com/interview-questions/artificial-intelligence
+    prompts:
+      - prompt: Explain Artificial Intelligence and give its applications.
+        keywords:
+      - prompt: How are machine learning and AI related?
+        keywords:
+      - prompt: What is Deep Learning based on?
+        keywords:
+      - prompt: How many layers are in a Neural Network?
+        keywords:
+      - prompt: Explain TensorFlow.
+        keywords:
+      - prompt: What are the pros of cognitive computing?
+        keywords:
+      - prompt: What’s the difference between NLP and NLU?
+        keywords:
+      - prompt: Give some examples of weak and strong AI.
+        keywords:
+      - prompt: What is the need of data mining?
+        keywords:
+      - prompt: Name some sectors where data mining is applicable.
+        keywords:
+      - prompt: What are the components of NLP?
+        keywords:
+      - prompt: What is the full form of LSTM?
+        keywords:
+      - prompt: What is Artificial Narrow Intelligence (ANI)?
+        keywords:
+      - prompt: What is a data cube?
+        keywords:
+      - prompt: What is the difference between model accuracy and model performance?
+        keywords:
+      - prompt: What are different components of GAN?
+        keywords:
+      - prompt: What are common data structures used in deep learning?
+        keywords:
+      - prompt: What is the role of the hidden layer in a neural network?
+        keywords:
+      - prompt: Mention some advantages of neural networks.
+        keywords:
+      - prompt: What is the difference between stemming and lemmatization?
+        keywords:
+      - prompt: What are the different types of text summarization?
+        keywords:
+      - prompt: What is the meaning of corpus in NLP?
+        keywords:
+      - prompt: Explain binarizing of data.
+        keywords:
+      - prompt: What is perception and its types?
+        keywords:
+      - prompt: Give some pros and cons of decision trees.
+        keywords:
