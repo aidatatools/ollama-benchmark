@@ -1,0 +1,36 @@
+version: 1.0
+modeltypes:
+  - type: chat
+    prompts:
+      - prompt: What are your thoughts on the latest scientific discovery regarding black holes?
+        keywords: science, recent
+  - type: completion
+    prompts:
+      - prompt: In a world where time travel is possible, a scientist invents a device that allows people to visit any historical event. One day, a young woman decides to travel back in time to...
+        keywords:
+  - type: instruct
+    prompts:
+      - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
+        keywords: cooking, recipe
+      - prompt: Develop a python function that solves the following problem, sudoku game
+        keywords: python, sudoku
+      - prompt: Create a dialogue between two characters that discusses economic crisis
+        keywords: dialogue
+      - prompt: In a forest, there are brave lions living there. Please continue the story.
+        keywords: sentence completition
+      - prompt: I'd like to book a flight for 4 to Seattle in U.S.
+        keywords: flight booking
+  - type: question-answer
+    reference_url: https://www.turing.com/interview-questions/artificial-intelligence
+    prompts:
+      - prompt: Explain Artificial Intelligence and give its applications.
+        keywords:
+      - prompt: How are machine learning and AI related?
+        keywords:
+      - prompt: What is Deep Learning based on?
+        keywords:
+      - prompt: What is the full form of LSTM?
+        keywords:
+      - prompt: What are different components of GAN?
+        keywords:
+
