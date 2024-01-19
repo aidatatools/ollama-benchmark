@@ -1,7 +1,7 @@
 import argparse
 import yaml
 import subprocess
-import re
+import datetime
 
 parser = argparse.ArgumentParser(
     prog="python3 check_models.py",
@@ -34,13 +34,24 @@ if __name__ == "__main__":
     if (args.models is not None):
         #print(f"args.models file path：{args.models}")
         models_dict = parse_yaml(args.models)
-        first_model_name = models_dict['models'][0]['model']
-        print(first_model_name)
-        result = subprocess.run(['ollama', 'run', first_model_name,f'"Why is the sky blue?"','--verbose','|','grep','eval'], stdout=subprocess.PIPE)
-        out = result.stdout
+        loc_dt = datetime.datetime.today()
+        # Writing to file
+        with open(f'log_{loc_dt.strftime("%Y-%m-%d-%H%M%S")}.log', "w") as file1:
+            
 
-        with open("tmp_out.txt", "wb") as binary_file:
-            # Write bytes to file
-            binary_file.write(out)
-        
-    
+            for onemodel in models_dict['models']:
+                model_name = onemodel['model']
+                print(f'model_name =    {model_name}')
+                file1.write(f'\nmodel_name =    {model_name}\n')
+                
+                result = subprocess.run(['ollama', 'run', model_name,f'"Why is the sky blue?"','--verbose'], capture_output=True, text=True, check=True)
+                std_err = result.stderr
+                #print(result.stderr)
+                file1.write(std_err)
+                
+                for line in std_err.split('\n'):
+                    if ('eval rate' in line) and ('prompt' not in line):
+                        print(line)
+                
+                print("-"*40)
+                file1.write("\n"+"-"*40)

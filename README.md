@@ -59,16 +59,7 @@ model = llama2
 Performance:      14.67(tokens/s)
 ```
 ## Step 3 : How to check benchmark models installed on your machine
-If you are on 8GB RAM machine, please comment out  - model: llama2:13b and - model: llava:13b
-```bash
-version: 1.0
-models:
-  - model: mistral:7b
-  - model: llama2:7b
-  #- model: llama2:13b
-  - model: llava:7b
-  #- model: llava:13b
-```
+If you are on 8GB RAM machine, please use this in the model, benchmark_models_8gb_ram.ymml
 
 ```bash
 jason@ubuntu:~/workspace/ollama-benchmark (main)
