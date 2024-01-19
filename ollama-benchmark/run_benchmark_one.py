@@ -34,11 +34,10 @@ if __name__ == "__main__":
     if (args.models is not None):
         #print(f"args.models file path：{args.models}")
         models_dict = parse_yaml(args.models)
+        
         loc_dt = datetime.datetime.today()
         # Writing to file
         with open(f'log_{loc_dt.strftime("%Y-%m-%d-%H%M%S")}.log', "w") as file1:
-            
-
             for onemodel in models_dict['models']:
                 model_name = onemodel['model']
                 print(f'model_name =    {model_name}')
@@ -52,6 +51,9 @@ if __name__ == "__main__":
                 for line in std_err.split('\n'):
                     if ('eval rate' in line) and ('prompt' not in line):
                         print(line)
+                        number = float(line[-20:-8])
+                        print(number)
+                        
                 
                 print("-"*40)
                 file1.write("\n"+"-"*40)
