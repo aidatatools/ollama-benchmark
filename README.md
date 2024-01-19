@@ -71,7 +71,7 @@ models:
 ```
 
 ```bash
-jasontgi@M014-2312004:~/workspace/ollama-benchmark/ollama-benchmark (main)
+jasontgi@ubuntu:~/workspace/ollama-benchmark (main)
 $ python3 ./ollama-benchmark/check_models.py -h
 jason@ubuntu:~/workspace/ollama-benchmark (main)
 $ python3 ./ollama-benchmark/check_models.py -m data/benchmark_models.yml
