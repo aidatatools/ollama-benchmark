@@ -1,0 +1,10 @@
+# Author: Jason Chuang
+# License: MIT
+version: 1.0
+models:
+  - model: mistral:7b
+  - model: llama2:7b
+  - model: llama2:13b
+  - model: llava:7b
+  - model: llava:13b
+  

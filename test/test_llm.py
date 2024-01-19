@@ -8,7 +8,7 @@ headers = {
 #"model" : "llama2"
 #"model" : "mistral"
 
-data = '{\n  "model": "llama2",\n  "prompt": "Why is the sky blue?",\n  "stream": false\n}'
+data = '{\n  "model": "llama2:7b",\n  "prompt": "Why is the sky blue?",\n  "stream": false\n}'
 
 response = requests.post('http://localhost:11434/api/generate', headers=headers, data=data)
 jsonResponse = response.json()

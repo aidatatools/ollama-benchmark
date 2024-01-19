@@ -1,3 +1,5 @@
+# Author: Jason Chuang
+# License: MIT
 version: 1.0
 modeltypes:
   - type: chat
@@ -9,6 +11,8 @@ modeltypes:
       - prompt: In a world where time travel is possible, a scientist invents a device that allows people to visit any historical event. One day, a young woman decides to travel back in time to...
         keywords:
   - type: instruct
+    models:
+      - model: mistral
     prompts:
       - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
         keywords: cooking, recipe
@@ -22,6 +26,9 @@ modeltypes:
         keywords: flight booking
   - type: question-answer
     reference_url: https://www.turing.com/interview-questions/artificial-intelligence
+    models:
+      - model: llama2:7b
+      - model: llama2:13b
     prompts:
       - prompt: Explain Artificial Intelligence and give its applications.
         keywords:
@@ -33,4 +40,12 @@ modeltypes:
         keywords:
       - prompt: What are different components of GAN?
         keywords:
-
+  - type: vision-image
+    reference_url: https://chuangtc.com/llm-vlm/samples.php
+    models:
+      - model: llava:7b
+      - model: llava:13b      
+    prompts:
+      - prompt: Explain Artificial Intelligence and give its applications.
+        keywords:
+  
