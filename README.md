@@ -79,9 +79,9 @@ vision-image (llava)
 
 For llava image-to-text model, I use the sample images from this url. <https://chuangtc.com/Research/llm-vlm.php>
 ```bash
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml --b data/benchmark1.yml -t instruct
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml --b data/benchmark1.yml -t question-answer
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml --b data/benchmark1.yml -t vision-image
+python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t instruct
+python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t question-answer
+python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t vision-image
 ```
 
 ## Reference
