@@ -47,6 +47,5 @@ modeltypes:
       - model: llava:13b      
     prompts:
       - prompt: Describe the image, 
-        #keywords: sample1.jpg,sample2.jpg,sample3.jpg,sample4.jpg,sample5.jpg
-        keywords: sample1.jpg,sample2.jpg
+        keywords: sample1.jpg,sample2.jpg,sample3.jpg,sample4.jpg,sample5.jpg
   
