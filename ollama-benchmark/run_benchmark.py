@@ -62,7 +62,7 @@ if __name__ == "__main__":
                 for onemodel in one_model_type['models']:
                     if (onemodel['model'] in allowed_models ):
                         loc_dt = datetime.datetime.today()
-                        with open(f'log_{loc_dt.strftime("%Y-%m-%d-%H%M%S")}.log', "w") as file1:
+                        with open(f'log_{loc_dt.strftime("%Y-%m-%d-%H%M%S")}.log', "w", encoding='utf-8') as file1:
                             #print(onemodel)
                             stored_nums=[]
                             model_name = onemodel['model']
@@ -75,7 +75,7 @@ if __name__ == "__main__":
                                     for img in img_file_names:
                                         prompt = f"{one_prompt['prompt']} './data/img/{img}' "
                                         print(f"prompt = {prompt}")
-                                        result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True)
+                                        result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
                                         std_err = result.stderr
                                         #print(result.stderr)
                                         file1.write(std_err)
@@ -89,10 +89,10 @@ if __name__ == "__main__":
                             else:
                                 for one_prompt in one_model_type['prompts']:
                                     print(f"prompt = {one_prompt['prompt']}")
-                                    result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True)
+                                    result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
                                     std_err = result.stderr
-                                    #print(result.stderr)
-                                    file1.write(std_err)
+                                    #print(result.stderr)                                   
+                                    file1.write(std_err)                                    
                                     
                                     for line in std_err.split('\n'):
                                         if ('eval rate' in line) and ('prompt' not in line):
