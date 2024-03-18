@@ -25,8 +25,8 @@ jason@ubuntu:~/workspace/ollama-benchmark (main)
 $ pwd
 /home/jason/workspace/ollama-benchmark
 jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ cd test
-jason@ubuntu:~/workspace/ollama-benchmark/test (main)
+$ cd tests
+jason@ubuntu:~/workspace/ollama-benchmark/tests (main)
 $ python3 test_llm.py
 ```
 
