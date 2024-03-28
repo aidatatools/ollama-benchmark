@@ -1,9 +1,9 @@
 # ollama-benchmark
-LLMs Throughput Benchmark for Ollama
+LLM Benchmark for Throughput via Ollama
 
 ## Installation Steps
 ```bash
-pip3 install -r requirements.txt
+pip3 install ollama-benchmark
 ```
 It's tested on Python 3.9 and above.
 
@@ -12,52 +12,53 @@ It's tested on Python 3.9 and above.
 
 13B model can be run on machines with 16GB of RAM
 
+## Usage explaination
+On Windows, Linux, and macOS, it will detect memory RAM size to first download required LLM models.
+
+When memory RAM size is greater than or equal to 4GB, but less than 8GB, it will check if gemma:2b exist. The program implicitly pull the model.
 ```bash
-ollama run mistral:7b
-ollama run llama2:7b
-ollama run llama2:13b
-ollama run llava:7b
-ollama run llava:13b
-```
-## Step 1 (optional) : How to run test
-```bash
-jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ pwd
-/home/jason/workspace/ollama-benchmark
-jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ cd tests
-jason@ubuntu:~/workspace/ollama-benchmark/tests (main)
-$ python3 test_llm.py
+ollama pull gemma:2b
 ```
 
-## Step 2 (optional) : How to run benchmark performance test metrics (tokens/s) for one model
-It's running in WSL2 on Windows 11
+When memory RAM size is greater than or euqal to 8GB, but less than 16GB, it will check if these models exist. The program implicitly pull these models
 ```bash
-jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ cd ollama-benchmark/
-jason@ubuntu:~/workspace/ollama-benchmark/ollama-benchmark (main)
-$ python3 query_llm.py
-model = llama2:7b
- total_duration time =   38344.98 ms
-  load_duration time =     739.50 ms
-   prompt eval time  =    4353.11 ms /     34 tokens
-          eval time  =   33247.05 ms /    219 tokens
-Performance:       6.59(tokens/s)
+ollama pull gemma:2b
+ollama pull gemma:7b
+ollama pull mistral:7b
+ollama pull llama2:7b
+ollama pull llava:7b
 ```
 
-It's running on Apple Mac mini (Apple M1 Chip)
+When memory RAM siz is greater than or euqal to 16GB, it will check if these models exist. The program implicitly pull these models
 ```bash
-➜  ollama-benchmark git:(main) ✗ pwd
-/Users/jason/workspace/ollama-benchmark
-➜  ollama-benchmark git:(main) ✗ cd ollama-benchmark
-➜  ollama-benchmark git:(main) ✗ python3 query_llm.py
-model = llama2
- total_duration time =   23425.13 ms
-  load_duration time =       0.63 ms
-   prompt eval time  =     442.39 ms /     13 tokens
-          eval time  =   22978.32 ms /    337 tokens
-Performance:      14.67(tokens/s)
+ollama pull gemma:2b
+ollama pull gemma:7b
+ollama pull mistral:7b
+ollama pull llama2:7b
+ollama pull llama2:13b
+ollama pull llava:7b
+ollama pull llava:13b
 ```
+
+## Usage for developers to develop new features on Windows Powershell 
+```bash
+pip install poetry
+poetry shell
+poetry install
+llm_benchmark hello jason
+```
+
+## Usage for common users
+```bash
+pip install ollama-benchmark
+llm_benchmark hello jason
+``` 
+
+### Example #1 send systeminfo and bechmark to remote server
+```bash
+llm_benchmark run --send
+```
+
 ## Step 3 : How to check benchmark models installed on your machine
 If you are on 8GB RAM machine, please use this in the model, benchmark_models_8gb_ram.yml
 
@@ -85,4 +86,4 @@ python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/b
 ```
 
 ## Reference
-[Ollama](https://ollama.ai)
+[Ollama](https://ollama.com)

@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "llm_benchmark"
+version = "0.3.0"
+description = "LLM Benchmark for Throughputs via Ollama"
+authors = ["Jason Chuang <chuangtcee@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/aidatatools/ollama-benchmark/"
+readme = "README.md"
+keywords = [
+    "benchmark",
+    "llama",
+    "ollama",
+    "llms",
+    "local",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typer = {extras = ["all"], version = "^0.9.0"}
+ollama = "^0.1.8"
+pyyaml = "^6.0.1"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[tool.poetry.scripts]
+llm_benchmark = "llm_benchmark.main:app"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
