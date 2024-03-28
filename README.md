@@ -77,10 +77,17 @@ llm_benchmark hello jason
 llm_benchmark run
 ```
 
+### The default sending back the info is
+
+GPU: 4090
+CPU: 7950X3D
+RAM: 64GB
+OS: Linux (Arch BTW)
+
 ### Example #1 send systeminfo and bechmark to remote server
 
 ```bash
-llm_benchmark run --send
+llm_benchmark run --sendinfo
 ```
 
 ## Step 3 : How to check benchmark models installed on your machine
