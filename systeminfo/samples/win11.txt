@@ -1,0 +1,230 @@
+System Information:
+System: Windows
+Node Name: M014-2312004
+Release: 10
+Version: 10.0.22631
+Machine: AMD64
+Processor: Intel64 Family 6 Model 151 Stepping 5, GenuineIntel
+
+CPU Information:
+Processor: Intel64 Family 6 Model 151 Stepping 5, GenuineIntel
+Physical Cores: 6
+Logical Cores: 12
+
+Memory Information:
+Total Memory: 34088599552 bytes
+Available Memory: 22949679104 bytes
+Used Memory: 11138920448 bytes
+Memory Utilization: 32.7%
+
+Disk Information:
+Total Disk Space: 2000381014016 bytes
+Used Disk Space: 128366305280 bytes
+Free Disk Space: 1872014708736 bytes
+Disk Space Utilization: 6.4%
+
+No GPU detected.
+
+
+Caption           : Intel64 Family 6 Model 151 Stepping 5
+DeviceID          : CPU0
+Manufacturer      : GenuineIntel
+MaxClockSpeed     : 2500
+Name              : 12th Gen Intel(R) Core(TM) i5-12400
+SocketDesignation : LGA1700
+
+
+
+
+
+
+__GENUS              : 2
+__CLASS              : Win32_PhysicalMemory
+__SUPERCLASS         : CIM_PhysicalMemory
+__DYNASTY            : CIM_ManagedSystemElement
+__RELPATH            : Win32_PhysicalMemory.Tag="Physical Memory 0"
+__PROPERTY_COUNT     : 36
+__DERIVATION         : {CIM_PhysicalMemory, CIM_Chip, CIM_PhysicalComponent, CIM_PhysicalElement...}
+__SERVER             : M014-2312004
+__NAMESPACE          : root\cimv2
+__PATH               : \\M014-2312004\root\cimv2:Win32_PhysicalMemory.Tag="Physical Memory 0"
+Attributes           : 2
+BankLabel            : BANK 0
+Capacity             : 17179869184
+Caption              : ����O����
+ConfiguredClockSpeed : 3200
+ConfiguredVoltage    : 1200
+CreationClassName    : Win32_PhysicalMemory
+DataWidth            : 64
+Description          : ����O����
+DeviceLocator        : Controller0-ChannelA-DIMM1
+FormFactor           : 8
+HotSwappable         : 
+InstallDate          : 
+InterleaveDataDepth  : 1
+InterleavePosition   : 2
+Manufacturer         : Micron Technology
+MaxVoltage           : 1200
+MemoryType           : 0
+MinVoltage           : 1200
+Model                : 
+Name                 : ����O����
+OtherIdentifyingInfo : 
+PartNumber           : 16ATF2G64AZ-3G2E1   
+PositionInRow        : 
+PoweredOn            : 
+Removable            : 
+Replaceable          : 
+SerialNumber         : 342F6148
+SKU                  : 
+SMBIOSMemoryType     : 26
+Speed                : 3200
+Status               : 
+Tag                  : Physical Memory 0
+TotalWidth           : 64
+TypeDetail           : 128
+Version              : 
+PSComputerName       : M014-2312004
+
+__GENUS              : 2
+__CLASS              : Win32_PhysicalMemory
+__SUPERCLASS         : CIM_PhysicalMemory
+__DYNASTY            : CIM_ManagedSystemElement
+__RELPATH            : Win32_PhysicalMemory.Tag="Physical Memory 1"
+__PROPERTY_COUNT     : 36
+__DERIVATION         : {CIM_PhysicalMemory, CIM_Chip, CIM_PhysicalComponent, CIM_PhysicalElement...}
+__SERVER             : M014-2312004
+__NAMESPACE          : root\cimv2
+__PATH               : \\M014-2312004\root\cimv2:Win32_PhysicalMemory.Tag="Physical Memory 1"
+Attributes           : 2
+BankLabel            : BANK 0
+Capacity             : 17179869184
+Caption              : ����O����
+ConfiguredClockSpeed : 3200
+ConfiguredVoltage    : 1200
+CreationClassName    : Win32_PhysicalMemory
+DataWidth            : 64
+Description          : ����O����
+DeviceLocator        : Controller1-ChannelA-DIMM1
+FormFactor           : 8
+HotSwappable         : 
+InstallDate          : 
+InterleaveDataDepth  : 1
+InterleavePosition   : 2
+Manufacturer         : Micron Technology
+MaxVoltage           : 1200
+MemoryType           : 0
+MinVoltage           : 1200
+Model                : 
+Name                 : ����O����
+OtherIdentifyingInfo : 
+PartNumber           : 16ATF2G64AZ-3G2E1   
+PositionInRow        : 
+PoweredOn            : 
+Removable            : 
+Replaceable          : 
+SerialNumber         : 342EFF9E
+SKU                  : 
+SMBIOSMemoryType     : 26
+Speed                : 3200
+Status               : 
+Tag                  : Physical Memory 1
+TotalWidth           : 64
+TypeDetail           : 128
+Version              : 
+PSComputerName       : M014-2312004
+
+
+
+
+
+
+SystemDirectory : C:\Windows\system32
+Organization    : 
+BuildNumber     : 22631
+RegisteredUser  : User01
+SerialNumber    : 00355-61259-64073-AAOEM
+Version         : 10.0.22631
+
+
+
+
+
+
+__GENUS                      : 2
+__CLASS                      : Win32_VideoController
+__SUPERCLASS                 : CIM_PCVideoController
+__DYNASTY                    : CIM_ManagedSystemElement
+__RELPATH                    : Win32_VideoController.DeviceID="VideoController1"
+__PROPERTY_COUNT             : 59
+__DERIVATION                 : {CIM_PCVideoController, CIM_VideoController, CIM_Controller, CIM_LogicalDevice...}
+__SERVER                     : M014-2312004
+__NAMESPACE                  : root\cimv2
+__PATH                       : \\M014-2312004\root\cimv2:Win32_VideoController.DeviceID="VideoController1"
+AcceleratorCapabilities      : 
+AdapterCompatibility         : Intel Corporation
+AdapterDACType               : Internal
+AdapterRAM                   : 1073741824
+Availability                 : 3
+CapabilityDescriptions       : 
+Caption                      : Intel(R) UHD Graphics 730
+ColorTableEntries            : 
+ConfigManagerErrorCode       : 0
+ConfigManagerUserConfig      : False
+CreationClassName            : Win32_VideoController
+CurrentBitsPerPixel          : 32
+CurrentHorizontalResolution  : 3840
+CurrentNumberOfColors        : 4294967296
+CurrentNumberOfColumns       : 0
+CurrentNumberOfRows          : 0
+CurrentRefreshRate           : 59
+CurrentScanMode              : 4
+CurrentVerticalResolution    : 2160
+Description                  : Intel(R) UHD Graphics 730
+DeviceID                     : VideoController1
+DeviceSpecificPens           : 
+DitherType                   : 0
+DriverDate                   : 20231209000000.000000-000
+DriverVersion                : 31.0.101.5081
+ErrorCleared                 : 
+ErrorDescription             : 
+ICMIntent                    : 
+ICMMethod                    : 
+InfFilename                  : oem113.inf
+InfSection                   : iADLSD_w10_DS
+InstallDate                  : 
+InstalledDisplayDrivers      : <>,C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_0c275c9dcf6a10fa\ig
+                               d10iumd64.dll,C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd64_0c275c9d
+                               cf6a10fa\igd10iumd64.dll,C:\Windows\System32\DriverStore\FileRepository\iigd_dch.inf_amd
+                               64_0c275c9dcf6a10fa\igd12umd64.dll
+LastErrorCode                : 
+MaxMemorySupported           : 
+MaxNumberControlled          : 
+MaxRefreshRate               : 75
+MinRefreshRate               : 23
+Monochrome                   : False
+Name                         : Intel(R) UHD Graphics 730
+NumberOfColorPlanes          : 
+NumberOfVideoPages           : 
+PNPDeviceID                  : PCI\VEN_8086&DEV_4692&SUBSYS_1EF21043&REV_0C\3&11583659&0&10
+PowerManagementCapabilities  : 
+PowerManagementSupported     : 
+ProtocolSupported            : 
+ReservedSystemPaletteEntries : 
+SpecificationVersion         : 
+Status                       : OK
+StatusInfo                   : 
+SystemCreationClassName      : Win32_ComputerSystem
+SystemName                   : M014-2312004
+SystemPaletteEntries         : 
+TimeOfLastReset              : 
+VideoArchitecture            : 5
+VideoMemoryType              : 2
+VideoMode                    : 
+VideoModeDescription         : 3840 x 2160 x 4294967296 ��m
+VideoProcessor               : Intel(R) UHD Graphics Family
+PSComputerName               : M014-2312004
+
+
+
+

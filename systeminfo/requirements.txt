@@ -1,0 +1,3 @@
+pip install psutil
+pip install gputil
+pip install lib-platform

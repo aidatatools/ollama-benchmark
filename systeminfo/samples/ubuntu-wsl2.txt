@@ -1,0 +1,113 @@
+System Information:
+System: Linux
+Node Name: jason3
+Release: 5.15.146.1-microsoft-standard-WSL2
+Version: #1 SMP Thu Jan 11 04:09:03 UTC 2024
+Machine: x86_64
+Processor: x86_64
+
+CPU Information:
+Processor: x86_64
+Physical Cores: 4
+Logical Cores: 8
+
+Memory Information:
+Total Memory: 16613711872 bytes
+Available Memory: 15852130304 bytes
+Used Memory: 485937152 bytes
+Memory Utilization: 4.6%
+
+Disk Information:
+Total Disk Space: 1081101176832 bytes
+Used Disk Space: 2767511552 bytes
+Free Disk Space: 1023341309952 bytes
+Disk Space Utilization: 0.3%
+
+No GPU detected.
+
+-------Linux----------
+jason3
+    description: Computer
+    width: 64 bits
+    capabilities: smp vsyscall32
+  *-core
+       description: Motherboard
+       physical id: 0
+     *-memory
+          description: System memory
+          physical id: 1
+          size: 15GiB
+     *-cpu
+          product: 11th Gen Intel(R) Core(TM) i7-1195G7 @ 2.90GHz
+          vendor: Intel Corp.
+          physical id: 2
+          bus info: cpu@0
+          version: 6.140.2
+          width: 64 bits
+          capabilities: fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp x86-64 constant_tsc arch_perfmon rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid pni pclmulqdq vmx ssse3 fma cx16 pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow vnmi ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid movdiri movdir64b fsrm avx512_vp2intersect md_clear flush_l1d arch_capabilities
+          configuration: microcode=4294967295
+     *-scsi
+          description: SCSI storage controller
+          product: Virtio console
+          vendor: Red Hat, Inc.
+          physical id: 3
+          bus info: pci@bd46:00:00.0
+          version: 01
+          width: 64 bits
+          clock: 33MHz
+          capabilities: scsi bus_master cap_list
+          configuration: driver=virtio-pci latency=64
+          resources: iomemory:90-8f iomemory:90-8f iomemory:90-8f irq:0 memory:9ffe00000-9ffe00fff memory:9ffe01000-9ffe01fff memory:9ffe02000-9ffe02fff
+        *-virtio0 UNCLAIMED
+             description: Virtual I/O device
+             physical id: 0
+             bus info: virtio@0
+             configuration: driver=virtio_console
+     *-generic
+          description: System peripheral
+          product: Virtio file system
+          vendor: Red Hat, Inc.
+          physical id: 4
+          bus info: pci@ea37:00:00.0
+          version: 01
+          width: 64 bits
+          clock: 33MHz
+          capabilities: bus_master cap_list
+          configuration: driver=virtio-pci latency=64
+          resources: iomemory:e0-df iomemory:e0-df iomemory:c0-bf irq:0 memory:e00000000-e00000fff memory:e00001000-e00001fff memory:c00000000-dffffffff
+        *-virtio1 UNCLAIMED
+             description: Virtual I/O device
+             physical id: 0
+             bus info: virtio@1
+             configuration: driver=virtiofs
+     *-display
+          description: 3D controller
+          product: Microsoft Corporation
+          vendor: Microsoft Corporation
+          physical id: 0
+          bus info: pci@f9e7:00:00.0
+          version: 00
+          width: 32 bits
+          clock: 33MHz
+          capabilities: bus_master cap_list
+          configuration: driver=dxgkrnl latency=0
+          resources: irq:0
+     *-pnp00:00
+          product: PnP device PNP0b00
+          physical id: 5
+          capabilities: pnp
+          configuration: driver=rtc_cmos
+  *-network
+       description: Ethernet interface
+       physical id: 1
+       logical name: eth0
+       serial: 00:15:5d:e2:ce:e1
+       size: 10Gbit/s
+       capabilities: ethernet physical
+       configuration: autonegotiation=off broadcast=yes driver=hv_netvsc driverversion=5.15.146.1-microsoft-standard-W duplex=full firmware=N/A ip=172.20.75.222 link=yes multicast=yes speed=10Gbit/s
+
+Distributor ID:	Ubuntu
+Description:	Ubuntu 22.04.4 LTS
+Release:	22.04
+Codename:	jammy
+
