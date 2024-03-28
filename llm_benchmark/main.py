@@ -1,6 +1,6 @@
 import typer
-from systeminfo.main import get_total_memory_size
-
+from llm_benchmark import check_models
+from systeminfo import main
 
 app = typer.Typer()
 
@@ -8,7 +8,21 @@ app = typer.Typer()
 @app.command()
 def hello(name: str):
     print(f"Hello {name}!")
-    print(f"Total memory_size:{get_total_memory_size():.2f}GB")
+    
+
+@app.command()
+def run(sendinfo: bool = False):
+    print(f"Total memory size : {main.get_total_memory_size():.2f} GB")
+    print(f"Get extra , os_version: {main.get_extra()['os_version']}")
+    ft_mem_size = float(f"{main.get_total_memory_size():.2f}")
+    models_file_path='data/benchmark_models_16gb_ram.yml'
+    if(ft_mem_size>3.5 and ft_mem_size <7.5):
+        models_file_path ='data/benchmark_models_4gb_ram.yml'
+    elif(ft_mem_size>7.5 and ft_mem_size <15.5):
+        models_file_path = 'data/benchmark_models_8gb_ram.yml'
+
+    check_models.pull_models(models_file_path)
+
 
 
 @app.command()

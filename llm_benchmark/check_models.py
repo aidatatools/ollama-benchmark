@@ -1,6 +1,7 @@
 import argparse
 import yaml
 import subprocess
+import ollama
 
 parser = argparse.ArgumentParser(
     prog="python3 check_models.py",
@@ -26,6 +27,14 @@ def parse_yaml(yaml_file_path):
         except yaml.YAMLError as e:
             print(e)
     return data
+
+def pull_models(models_file_path):
+    print(f"args.models file path：{models_file_path}")
+    models_dict = parse_yaml(models_file_path)
+    for x in models_dict['models']:
+        model_name = x['model']
+        print(model_name)
+        ollama.pull(model_name)
 
 if __name__ == "__main__": 
     args = parser.parse_args()

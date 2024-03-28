@@ -6,7 +6,7 @@ import datetime
 parser = argparse.ArgumentParser(
     prog="python3 check_models.py",
     description="Before running check_models.py, please make sure you installed ollama successfully \
-        on macOS, Linux, or WSL2 on Windows. You can check the website: https://ollama.ai",
+        on macOS, Linux, or WSL2 on Windows. You can check the website: https://ollama.com",
     epilog="Author: Jason Chuang")
 
 parser.add_argument("-v",

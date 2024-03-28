@@ -1,0 +1,5 @@
+# Author: Jason Chuang
+# License: MIT
+version: 1.0
+models:
+  - model: gemma:2b

@@ -2,6 +2,8 @@
 # License: MIT
 version: 1.0
 models:
+  - model: gemma:2b
+  - model: gemma:7b
   - model: mistral:7b
   - model: llama2:7b
   - model: llava:7b
