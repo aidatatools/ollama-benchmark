@@ -20,13 +20,13 @@ It's tested on Python 3.9 and above.
 
 On Windows, Linux, and macOS, it will detect memory RAM size to first download required LLM models.
 
-When memory RAM size is greater than or equal to 4GB, but less than 8GB, it will check if gemma:2b exist. The program implicitly pull the model.
+When memory RAM size is greater than or equal to 4GB, but less than 7GB, it will check if gemma:2b exist. The program implicitly pull the model.
 
 ```bash
 ollama pull gemma:2b
 ```
 
-When memory RAM size is greater than or euqal to 8GB, but less than 16GB, it will check if these models exist. The program implicitly pull these models
+When memory RAM size is greater than 7GB, but less than 15GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
 ollama pull gemma:2b
@@ -36,7 +36,7 @@ ollama pull llama2:7b
 ollama pull llava:7b
 ```
 
-When memory RAM siz is greater than or euqal to 16GB, it will check if these models exist. The program implicitly pull these models
+When memory RAM siz is greater than 15GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
 ollama pull gemma:2b

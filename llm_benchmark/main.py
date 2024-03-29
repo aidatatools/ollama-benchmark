@@ -3,7 +3,7 @@ from llm_benchmark import check_models
 from llm_benchmark import check_ollama
 from llm_benchmark import run_benchmark
 
-from systeminfo import main
+from systeminfo import sysmain
 
 app = typer.Typer()
 
@@ -15,7 +15,7 @@ def hello(name: str):
 
 @app.command()
 def run(sendinfo: bool = True):
-    sys_info = main.get_extra()
+    sys_info = sysmain.get_extra()
     print(f"Total memory size : {sys_info['memory']:.2f} GB") 
     print(f"cpu_info: {sys_info['cpu']}")
     print(f"gpu_info: {sys_info['gpu']}")
@@ -26,9 +26,9 @@ def run(sendinfo: bool = True):
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
     models_file_path = 'data/benchmark_models_16gb_ram.yml'
-    if(ft_mem_size>3.5 and ft_mem_size <7.5):
+    if(ft_mem_size>=4 and ft_mem_size <7):
         models_file_path = 'data/benchmark_models_4gb_ram.yml'
-    elif(ft_mem_size>7.5 and ft_mem_size <15.5):
+    elif(ft_mem_size>=7 and ft_mem_size <15):
         models_file_path = 'data/benchmark_models_8gb_ram.yml'
 
     check_models.pull_models(models_file_path)

@@ -3,6 +3,7 @@ import psutil
 import GPUtil
 import subprocess
 import os
+import uuid
 
 def get_total_memory_size():
     memory_info = psutil.virtual_memory()
@@ -61,9 +62,9 @@ def get_gpu_info():
 
     if not gpus:
         print("\nNo GPU detected.")
-        ans['0'] = f"no_gpu"
+        ans['0'] = "no_gpu"
     else:
-        ans['0'] = f"there_is_gpu"
+        ans['0'] = "there_is_gpu"
 
         for i, gpu in enumerate(gpus):
             #print(f"\nGPU {i + 1} Information:")
@@ -76,6 +77,8 @@ def get_gpu_info():
             ans[f'{i+1}']['gpu_memory_used'] = f"{gpu.memoryUsed} MB"
             ans[f'{i+1}']['gpu_load'] = f"{gpu.load*100}%"
             ans[f'{i+1}']['gpu_temperature'] = f"{gpu.temperature}°C"
+    
+    return ans
 
 def check_windows_shell():
     parent_process = psutil.Process(os.getppid()).name().lower()
@@ -86,10 +89,12 @@ def check_windows_shell():
     else:
         return 'Unknown'
 
+
 def get_extra():
     system_info = platform.uname()
     ans={}
     ans['system'] = f"{system_info.system}"
+    ans['memory'] = get_total_memory_size()
     try:
         if(system_info.system=='Darwin'):
             ans['system_name'] = "macOS"
@@ -110,15 +115,25 @@ def get_extra():
             ans['system_name'] = "Linux"
 
             print('-------Linux----------')
-            r1 = subprocess.run(['lshw'],capture_output=True,text=True)
-            ans["hardware"] = f"{r1.stdout}"
+            r1 = subprocess.run(['lshw','-C','cpu'],capture_output=True,text=True)
+            for line in r1.stdout.split('\n'):
+                if ('product' in line):
+                    ans['cpu']=f"{line[16:]}"
+            
+            if (get_gpu_info()['0']=='no_gpu'):
+                r2 = subprocess.run(['lshw','-C','display'],capture_output=True,text=True)
+                for line in r2.stdout.split('\n'):
+                    if ('product' in line):
+                        ans['gpu']=f"{line[16:]}"
+            
             r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
-            ans['software'] = f"{r2.stdout}"
-            for line in ans['software'].split('\n'):
+            software = f"{r2.stdout}"
+            
+            for line in software.split('\n'):
                 if ('Description' in line):
-                    ans['os_version']=f"{line[12:]}"
+                    ans['os_version']=f"{line[12:]}".strip()
             return ans
-
+            
         elif(system_info.system=='Windows'):
             ans['system_name'] = "Windows"
 
@@ -126,7 +141,7 @@ def get_extra():
             print("Python is running in:", check_windows_shell(), "on Windows")
             ans['run_in'] = f"{check_windows_shell()}"
             
-            ans['memory'] = get_total_memory_size()
+            
                         
             r1 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_Processor'],capture_output=True,text=True)
             #print(r1.stdout)
@@ -148,3 +163,19 @@ def get_extra():
 
     except:
         print("error!")
+
+def get_uuid():
+    sys_info = get_extra()
+    system_name = sys_info['system_name']
+    cpu = sys_info['cpu']
+    gpu  = sys_info['gpu']
+    memory = f"{sys_info['memory']:.2f}"
+
+    id_str = f"{system_name}|{cpu}|{gpu}|{memory}"
+    print(id_str)
+    uuid5 = uuid.uuid5(uuid.NAMESPACE_X500, id_str)
+    return uuid5    
+
+if __name__ == "__main__":
+    uuid5 = get_uuid()
+    print("UUID version 5:", uuid5)
