@@ -103,6 +103,11 @@ def get_extra():
             r1 = subprocess.run(['system_profiler', 'SPHardwareDataType'],capture_output=True,text=True)
             #ans['hardware'] = f"{r1.stdout}"
             for line in r1.stdout.split('\n'):
+                if('Model Identifier' in line):
+                    ans['model']=f"{line[24:]}"
+                    
+
+            for line in r1.stdout.split('\n'):
                 if ('Chip' in line):
                     ans['cpu']=f"{line[12:]}"
             

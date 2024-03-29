@@ -36,18 +36,18 @@ def run(sendinfo: bool = True):
 
     benchmark_file_path = 'data/benchmark1.yml'
 
-    bench_result_info = {}
+    bench_results_info = {}
     result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
-    bench_result_info.update(result1)
+    bench_results_info.update(result1)
     result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer')
-    bench_result_info.update(result2)
+    bench_results_info.update(result2)
     result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
-    bench_result_info.update(result3)
+    bench_results_info.update(result3)
 
     if (sendinfo==True):
         print(f"Sending the following data to a remote server")
         print(f"Your machine UUID : {sysmain.get_uuid()}")
-        print(f"{bench_result_info.items()}")
+        print(f"{bench_results_info.items()}")
         print('=='*10)
         print(f"{sys_info.items()}")
 
