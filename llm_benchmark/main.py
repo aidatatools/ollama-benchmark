@@ -44,10 +44,12 @@ def run(sendinfo: bool = True):
     result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
     bench_result_info.update(result3)
 
-
-    print(f"{bench_result_info.items()}")
-    print('=='*10)
-    print(f"{sys_info.items()}")
+    if (sendinfo==True):
+        print(f"Sending the following data to a remote server")
+        print(f"Your machine UUID : {sysmain.get_uuid()}")
+        print(f"{bench_result_info.items()}")
+        print('=='*10)
+        print(f"{sys_info.items()}")
 
 
 @app.command()
