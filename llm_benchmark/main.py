@@ -1,5 +1,8 @@
 import typer
 from llm_benchmark import check_models
+from llm_benchmark import check_ollama
+from llm_benchmark import run_benchmark
+
 from systeminfo import main
 
 app = typer.Typer()
@@ -11,24 +14,46 @@ def hello(name: str):
     
 
 @app.command()
-def run(sendinfo: bool = False):
-    print(f"Total memory size : {main.get_total_memory_size():.2f} GB")
-    print(f"Get extra , os_version: {main.get_extra()['os_version']}")
-    ft_mem_size = float(f"{main.get_total_memory_size():.2f}")
-    models_file_path='data/benchmark_models_16gb_ram.yml'
+def run(sendinfo: bool = True):
+    sys_info = main.get_extra()
+    print(f"Total memory size : {sys_info['memory']:.2f} GB") 
+    print(f"cpu_info: {sys_info['cpu']}")
+    print(f"gpu_info: {sys_info['gpu']}")
+    print(f"os_version: {sys_info['os_version']}")
+
+    check_ollama.check_ollama_version()
+    print('-'*10)
+
+    ft_mem_size = float(f"{sys_info['memory']:.2f}")
+    models_file_path = 'data/benchmark_models_16gb_ram.yml'
     if(ft_mem_size>3.5 and ft_mem_size <7.5):
-        models_file_path ='data/benchmark_models_4gb_ram.yml'
+        models_file_path = 'data/benchmark_models_4gb_ram.yml'
     elif(ft_mem_size>7.5 and ft_mem_size <15.5):
         models_file_path = 'data/benchmark_models_8gb_ram.yml'
 
     check_models.pull_models(models_file_path)
+    print('-'*10)
 
+    benchmark_file_path = 'data/benchmark1.yml'
+
+    bench_result_info = {}
+    result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
+    bench_result_info.update(result1)
+    result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer')
+    bench_result_info.update(result2)
+    result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
+    bench_result_info.update(result3)
+
+
+    print(f"{bench_result_info.items()}")
+    print('=='*10)
+    print(f"{sys_info.items()}")
 
 
 @app.command()
 def goodbye(name: str, formal: bool = False):
     if formal:
-        print(f"Goodbye Ms. {name}. Have a good day.")
+        print(f"Goodbye Mr.(Ms.) {name}. Have a good day.")
     else:
         print(f"Bye {name}!")
 

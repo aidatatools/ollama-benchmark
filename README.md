@@ -48,6 +48,14 @@ ollama pull llava:7b
 ollama pull llava:13b
 ```
 
+## Usage for general users directly
+
+```bash
+pip install ollama-benchmark
+llm_benchmark hello jason
+llm_benchmark run
+```
+
 ## Python Poetry manually(advanced) installation
 
 <https://python-poetry.org/docs/#installing-manually>
@@ -69,26 +77,29 @@ poetry install
 llm_benchmark hello jason
 ```
 
-## Usage for common direct users
-
-```bash
-pip install ollama-benchmark
-llm_benchmark hello jason
-llm_benchmark run
-```
 
 ### The default sending back the info is
 
-GPU: 4090
-CPU: 7950X3D
-RAM: 64GB
-OS: Linux (Arch BTW)
+Memory Size: 32GB
 
-### Example #1 send systeminfo and bechmark to remote server
+CPU: Intel i5-12400
+
+GPU: 3060
+
+OS: Microsoft Windows 11
+
+### Example #1 send systeminfo and bechmark results to a remote server
 
 ```bash
-llm_benchmark run --sendinfo
+llm_benchmark run
 ```
+
+### Example #2 Do not send systeminfo and bechmark results to a remote server
+
+```bash
+llm_benchmark run --no-sendinfo
+```
+
 
 ## Step 3 : How to check benchmark models installed on your machine
 

@@ -125,12 +125,21 @@ def get_extra():
             prefix_exe='powershell.exe'
             print("Python is running in:", check_windows_shell(), "on Windows")
             ans['run_in'] = f"{check_windows_shell()}"
+            
+            ans['memory'] = get_total_memory_size()
+                        
             r1 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_Processor'],capture_output=True,text=True)
             #print(r1.stdout)
+            r_cpu = subprocess.run([prefix_exe,'(Get-WmiObject Win32_Processor).Name'],capture_output=True,text=True)
+            #print(r_cpu.stdout)
+            ans['cpu']=r_cpu.stdout.strip()
             r2 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_PhysicalMemory'],capture_output=True,text=True)
             #print(r2.stdout)
             r3 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_VideoController'],capture_output=True,text=True)
             #print(r3.stdout)
+            r_gpu = subprocess.run([prefix_exe,'(Get-WmiObject Win32_VideoController).Caption'],capture_output=True,text=True)
+            #print(r_gpu)
+            ans['gpu'] = r_gpu.stdout.strip()
             r4 = subprocess.run([prefix_exe,'(Get-WmiObject Win32_OperatingSystem).Caption'],capture_output=True,text=True)
             #print(r4.stdout)
             ans['os_version'] = f"{r4.stdout}"
