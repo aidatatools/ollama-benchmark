@@ -59,6 +59,20 @@ def goodbye(name: str, formal: bool = False):
     else:
         print(f"Bye {name}!")
 
+@app.command()
+def sysinfo(formal: bool = True):
+    if formal:
+        sys_info = sysmain.get_extra()
+        #print(sys_info.items())
+        print(f"Total memory size : {sys_info['memory']:.2f} GB") 
+        print(f"cpu_info: {sys_info['cpu']}")
+        print(f"gpu_info: {sys_info['gpu']}")
+        print(f"os_version: {sys_info['os_version']}")
+        print(f"Your machine UUID : {sysmain.get_uuid()}")
+        print()
+    else:
+        print(f"No print!")
+
 
 if __name__ == "__main__":
     app()

@@ -101,13 +101,22 @@ def get_extra():
 
             print('----------Apple Mac---------')
             r1 = subprocess.run(['system_profiler', 'SPHardwareDataType'],capture_output=True,text=True)
-            ans['hardware'] = f"{r1.stdout}"
-            r2 = subprocess.run(['system_profiler', 'SPDisplaysDataType'],capture_output=True,text=True)
-            ans['display'] = f"{r2.stdout}"
+            #ans['hardware'] = f"{r1.stdout}"
+            for line in r1.stdout.split('\n'):
+                if ('Chip' in line):
+                    ans['cpu']=f"{line[12:]}"
+            
+            if(ans['cpu'].startswith('Apple')):
+                ans['gpu'] = ans['cpu']
+            else:
+                ans['gpu'] = 'no_gpu'
+            
+            #r2 = subprocess.run(['system_profiler', 'SPDisplaysDataType'],capture_output=True,text=True)
+            #ans['display'] = f"{r2.stdout}"
             r3 = subprocess.run(['system_profiler', 'SPSoftwareDataType'],capture_output=True,text=True)
-            ans['software'] = f"{r3.stdout}"
+            #ans['software'] = f"{r3.stdout}"
 
-            for line in ans['software'].split('\n'):
+            for line in r3.stdout.split('\n'):
                 if ('System Version' in line):
                     ans['os_version']=f"{line[22:]}"
             return ans
@@ -139,9 +148,7 @@ def get_extra():
 
             prefix_exe='powershell.exe'
             print("Python is running in:", check_windows_shell(), "on Windows")
-            ans['run_in'] = f"{check_windows_shell()}"
-            
-            
+            ans['run_in'] = f"{check_windows_shell()}"           
                         
             r1 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_Processor'],capture_output=True,text=True)
             #print(r1.stdout)
@@ -177,5 +184,6 @@ def get_uuid():
     return uuid5    
 
 if __name__ == "__main__":
+    #sysinfo = get_extra()
     uuid5 = get_uuid()
     print("UUID version 5:", uuid5)
