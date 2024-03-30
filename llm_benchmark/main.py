@@ -3,9 +3,9 @@ from llm_benchmark import check_models
 from llm_benchmark import check_ollama
 from llm_benchmark import run_benchmark
 
-from systeminfo import sysmain
+from .systeminfo import sysmain
 
-from security_connection import connection 
+from .security_connection import connection 
 app = typer.Typer()
 
 
