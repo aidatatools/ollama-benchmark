@@ -185,7 +185,7 @@ def get_uuid():
     memory = f"{sys_info['memory']:.2f}"
 
     id_str = f"{system_name}|{cpu}|{gpu}|{memory}"
-    print(id_str)
+    #print(id_str)
     uuid5 = uuid.uuid5(uuid.NAMESPACE_X500, id_str)
     return uuid5    
 

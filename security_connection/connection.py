@@ -1,19 +1,17 @@
 import requests,json
 
-remote_server = "llm.aidatatools.com"
 
-data = {}
-data["uuid"]= f"d0a9ec51-60a1-5a2b-9a2b-4bcac27e0a95"
-data["src_str"]= f"macOS|Apple M1|Apple M1|16.00"
-data["encode"]= f"ZDBhOWVjNTEtNjBhMS01YTJiLTlhMmItNGJjYWMyN2UwYTk2"
+remote_server = "https://llm.aidatatools.com"
+#remote_server = "http://localhost:5000"
 
-json_object = json.dumps(data, indent = 4)
+def send_sysinfo(data_dict):
+    
+    json_object = json.dumps(data_dict, indent = 4)
+    print(json_object)
+    print('-'*10)
 
-print(json_object)
-print('-'*10)
+    url = f'{remote_server}/api/receiver.php'
 
-url = f'http://{remote_server}/receiver.php'
+    x = requests.post(url, data = json_object)
 
-x = requests.post(url, data = json_object)
-
-print(x.text) 
+    return x.text 

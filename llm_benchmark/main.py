@@ -5,6 +5,7 @@ from llm_benchmark import run_benchmark
 
 from systeminfo import sysmain
 
+from security_connection import connection 
 app = typer.Typer()
 
 
@@ -63,19 +64,16 @@ def goodbye(name: str, formal: bool = False):
 def sysinfo(formal: bool = True):
     if formal:
         sys_info = sysmain.get_extra()
+        sys_info['uuid'] = f"{sysmain.get_uuid()}"
         #print(sys_info.items())
-        print(f"memory_size : {sys_info['memory']:.2f} GB") 
+        print(f"memory : {sys_info['memory']:.2f} GB") 
         print(f"cpu_info: {sys_info['cpu']}")
         print(f"gpu_info: {sys_info['gpu']}")
         print(f"os_version: {sys_info['os_version']}")
-        print(f"Your machine UUID : {sysmain.get_uuid()}")
+        print(f"Your machine UUID : {sys_info['uuid']}")
 
-        uuid5 = f"{sysmain.get_uuid()}"
-        b = uuid5.encode('UTF-8')
-        bytes_encode = base64.b64encode(b)
-        print(f"{bytes_encode}"[2:-1])
-
-        print()
+        x = connection.send_sysinfo(sys_info)
+        print(x)
     else:
         print(f"No print!")
 
