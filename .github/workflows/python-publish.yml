@@ -1,0 +1,29 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  build-n-publish:
+    name: Build and publish to PyPI
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: Install Poetry
+      run: curl -sSL https://install.python-poetry.org | python -
+    - name: Add Poetry to path
+      run: echo "${HOME}/.poetry/bin" >> $GITHUB_PATH
+    - run: poetry install
+    - run: poetry config pypi-token.pypi "${{ secrets.PYPI_API_KEY }}"
+    - name: Publish package
+      run: poetry publish --build
