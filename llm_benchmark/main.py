@@ -50,7 +50,10 @@ def run(sendinfo: bool = True):
         print(f"Your machine UUID : {sysmain.get_uuid()}")
         print(f"{bench_results_info.items()}")
         print('=='*10)
-        print(f"{sys_info.items()}")
+        #print(f"{sys_info.items()}")
+        #sys_info = sysmain.get_extra()
+        x = connection.send_sysinfo(sys_info)
+        print(x)
 
 
 @app.command()
