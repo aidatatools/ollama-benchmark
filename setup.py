@@ -18,7 +18,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
-    python_requires='>=3.8',
+    python_requires='>=3.9',
     install_requires=[
         'click>=8.0.0',
         'typer = 0.11.0',
@@ -26,7 +26,7 @@ setup(
         'pyyaml = 6.0.1',
         'requests = 2.31.0',
         'psutil = 5.9.8',
-        'gputil = 1.4.0',
+        'GPUtil = 1.4.0',
         'lib-platform = 1.2.10'
     ],
     entry_points={

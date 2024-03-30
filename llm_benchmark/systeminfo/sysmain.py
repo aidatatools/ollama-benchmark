@@ -55,12 +55,16 @@ def get_disk_info():
     ans['free_disk_space'] = f"{disk_info.free}"
     ans['disk_space_utilization'] = f" {disk_info.percent:.2f}%"
 
-#Only Nvidia GPU
+#Only Nvidia GPU on Windows and Linux
 def get_gpu_info():    
 
-    gpus = GPUtil.getGPUs()
     ans={}
-
+    if (get_system_info()['system']=='Darwin'):
+        ans['0'] = "no_gpu"
+        return ans
+    else:
+        gpus = GPUtil.getGPUs()
+    
     if not gpus:
         print("\nNo GPU detected.")
         ans['0'] = "no_gpu"

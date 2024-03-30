@@ -1,11 +1,11 @@
-# ollama-benchmark
+# llm-benchmark (ollama-benchmark)
 
 LLM Benchmark for Throughput via Ollama (Local LLMs)
 
 ## Installation Steps
 
 ```bash
-pip3 install llm_benchmark
+pip install llm-benchmark
 ```
 
 It's tested on Python 3.9 and above.
@@ -51,7 +51,7 @@ ollama pull llava:13b
 ## Usage for general users directly
 
 ```bash
-pip install llm_benchmark
+pip install llm-benchmark
 llm_benchmark hello jason
 llm_benchmark run
 ```
