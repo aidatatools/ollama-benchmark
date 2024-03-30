@@ -1,6 +1,6 @@
 # ollama-benchmark
 
-LLM Benchmark for Throughput via Ollama
+LLM Benchmark for Throughput via Ollama (Local LLMs)
 
 ## Installation Steps
 
@@ -77,7 +77,6 @@ poetry install
 llm_benchmark hello jason
 ```
 
-
 ### The default sending back the info is
 
 Memory Size: 32GB
@@ -99,7 +98,6 @@ llm_benchmark run
 ```bash
 llm_benchmark run --no-sendinfo
 ```
-
 
 ## Step 3 : How to check benchmark models installed on your machine
 

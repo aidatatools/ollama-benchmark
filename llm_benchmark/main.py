@@ -1,4 +1,4 @@
-import typer
+import typer, base64
 from llm_benchmark import check_models
 from llm_benchmark import check_ollama
 from llm_benchmark import run_benchmark
@@ -64,11 +64,17 @@ def sysinfo(formal: bool = True):
     if formal:
         sys_info = sysmain.get_extra()
         #print(sys_info.items())
-        print(f"Total memory size : {sys_info['memory']:.2f} GB") 
+        print(f"memory_size : {sys_info['memory']:.2f} GB") 
         print(f"cpu_info: {sys_info['cpu']}")
         print(f"gpu_info: {sys_info['gpu']}")
         print(f"os_version: {sys_info['os_version']}")
         print(f"Your machine UUID : {sysmain.get_uuid()}")
+
+        uuid5 = f"{sysmain.get_uuid()}"
+        b = uuid5.encode('UTF-8')
+        bytes_encode = base64.b64encode(b)
+        print(f"{bytes_encode}"[2:-1])
+
         print()
     else:
         print(f"No print!")

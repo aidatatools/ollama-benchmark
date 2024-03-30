@@ -4,6 +4,7 @@ import GPUtil
 import subprocess
 import os
 import uuid
+import base64
 
 def get_total_memory_size():
     memory_info = psutil.virtual_memory()
@@ -192,3 +193,5 @@ if __name__ == "__main__":
     #sysinfo = get_extra()
     uuid5 = get_uuid()
     print("UUID version 5:", uuid5)
+    
+
