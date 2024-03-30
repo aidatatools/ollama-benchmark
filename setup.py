@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='llm_benchmark',
-    version='0.3.5',
+    version='0.3.6',
     author='Jason Chuang',
     author_email='chuangtcee@gmail.com',
     description='LLM Benchmark',
