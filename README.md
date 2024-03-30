@@ -99,36 +99,6 @@ llm_benchmark run
 llm_benchmark run --no-sendinfo
 ```
 
-## Step 3 : How to check benchmark models installed on your machine
-
-If you are on 8GB RAM machine, please use this in the model, benchmark_models_8gb_ram.yml
-
-```bash
-jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ python3 ./ollama-benchmark/check_models.py -h
-jason@ubuntu:~/workspace/ollama-benchmark (main)
-$ python3 ./ollama-benchmark/check_models.py -m data/benchmark_models.yml
-args.models file path：data/benchmark_models.yml
-```
-
-## Step 4 : How to run benchmark for different models
-
-The type (-t) could be
-
-instruct (mistral)
-
-question-answer (llama2)
-
-vision-image (llava)
-
-For llava image-to-text model, I use the sample images from this url. <https://chuangtc.com/Research/llm-vlm.php>
-
-```bash
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t instruct
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t question-answer
-python3 ollama-benchmark/run_benchmark.py -m data/benchmark_models.yml -b data/benchmark1.yml -t vision-image
-```
-
 ## Reference
 
 [Ollama](https://ollama.com)
