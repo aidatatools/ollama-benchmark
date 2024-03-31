@@ -6,8 +6,11 @@ from llm_benchmark import run_benchmark
 from .systeminfo import sysmain
 
 from .security_connection import connection 
-app = typer.Typer()
 
+import pkg_resources
+
+
+app = typer.Typer()
 
 @app.command()
 def hello(name: str):
@@ -26,16 +29,16 @@ def run(sendinfo: bool = True):
     print('-'*10)
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
-    models_file_path = 'data/benchmark_models_16gb_ram.yml'
+    models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
     if(ft_mem_size>=4 and ft_mem_size <7):
-        models_file_path = 'data/benchmark_models_4gb_ram.yml'
+        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
     elif(ft_mem_size>=7 and ft_mem_size <15):
-        models_file_path = 'data/benchmark_models_8gb_ram.yml'
+        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
 
     check_models.pull_models(models_file_path)
     print('-'*10)
 
-    benchmark_file_path = 'data/benchmark1.yml'
+    benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark1.yml')
 
     bench_results_info = {}
     result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
