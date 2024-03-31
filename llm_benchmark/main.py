@@ -42,7 +42,7 @@ def run(sendinfo: bool = True):
     benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark1.yml')
 
     bench_results_info = {}
-    is_simulation = True
+    is_simulation = False
     if is_simulation==False :
         result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
         bench_results_info.update(result1)
