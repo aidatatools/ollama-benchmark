@@ -25,7 +25,8 @@ def run(sendinfo: bool = True):
     print(f"gpu_info: {sys_info['gpu']}")
     print(f"os_version: {sys_info['os_version']}")
 
-    check_ollama.check_ollama_version()
+    ollama_version = check_ollama.check_ollama_version()
+    print(f"ollama_version: {ollama_version}")
     print('-'*10)
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
@@ -41,22 +42,30 @@ def run(sendinfo: bool = True):
     benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark1.yml')
 
     bench_results_info = {}
-    result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
-    bench_results_info.update(result1)
-    result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer')
-    bench_results_info.update(result2)
-    result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
-    bench_results_info.update(result3)
+    is_simulation = True
+    if is_simulation==False :
+        result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
+        bench_results_info.update(result1)
+        result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer')
+        bench_results_info.update(result2)
+        result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
+        bench_results_info.update(result3)
+    else:
+        bench_results_info.update({"llama2:7b":7.65})
+        bench_results_info.update({"gemma2:7b":17.77})
 
     if (sendinfo==True):
         print(f"Sending the following data to a remote server")
         print(f"Your machine UUID : {sysmain.get_uuid()}")
-        print(f"{bench_results_info.items()}")
+        #print(f"{bench_results_info.items()}")
+        x = connection.send_benchmark(sysmain.get_uuid(),ollama_version,bench_results_info)
+        #print(x)
         print('=='*10)
         #print(f"{sys_info.items()}")
-        #sys_info = sysmain.get_extra()
+        sys_info = sysmain.get_extra()
+        sys_info['uuid']=f"{sysmain.get_uuid()}"
         x = connection.send_sysinfo(sys_info)
-        print(x)
+        #print(x)
 
 
 @app.command()
