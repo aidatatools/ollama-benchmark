@@ -11,8 +11,6 @@ pip install llm-benchmark
 ## Usage for general users directly
 
 ```bash
-pip install llm-benchmark
-llm_benchmark hello jason
 llm_benchmark run
 ```
 
@@ -81,13 +79,13 @@ poetry install
 llm_benchmark hello jason
 ```
 
-### Example #1 send systeminfo and bechmark results to a remote server
+### Example #1 send systeminfo and benchmark results to a remote server
 
 ```bash
 llm_benchmark run
 ```
 
-### Example #2 Do not send systeminfo and bechmark results to a remote server
+### Example #2 Do not send systeminfo and benchmark results to a remote server
 
 ```bash
 llm_benchmark run --no-sendinfo
