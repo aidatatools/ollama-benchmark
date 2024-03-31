@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "llm_benchmark"
-version = "0.3.9"
+version = "0.3.10"
 description = "LLM Benchmark for Throughputs via Ollama"
 authors = ["Jason Chuang <chuangtcee@gmail.com>"]
 license = "MIT"
