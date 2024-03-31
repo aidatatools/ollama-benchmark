@@ -8,6 +8,18 @@ LLM Benchmark for Throughput via Ollama (Local LLMs)
 pip install llm-benchmark
 ```
 
+## Usage for general users directly
+
+```bash
+pip install llm-benchmark
+llm_benchmark hello jason
+llm_benchmark run
+```
+
+## Installation and Usage in Video format
+
+![llm-benchmark](https://github.com/aidatatools/ollama-benchmark/blob/main/llm-benchmark.gif)
+
 It's tested on Python 3.9 and above.
 
 ## ollama installation with the following models installed
@@ -48,14 +60,6 @@ ollama pull llava:7b
 ollama pull llava:13b
 ```
 
-## Usage for general users directly
-
-```bash
-pip install llm-benchmark
-llm_benchmark hello jason
-llm_benchmark run
-```
-
 ## Python Poetry manually(advanced) installation
 
 <https://python-poetry.org/docs/#installing-manually>
@@ -76,16 +80,6 @@ poetry shell
 poetry install
 llm_benchmark hello jason
 ```
-
-### The default sending back the info is
-
-Memory Size: 32GB
-
-CPU: Intel i5-12400
-
-GPU: 3060
-
-OS: Microsoft Windows 11
 
 ### Example #1 send systeminfo and bechmark results to a remote server
 
