@@ -1,8 +1,8 @@
 import requests,json
 
 
-#remote_server = "http://llm.aidatatools.com"
-remote_server = "http://localhost:5000"
+remote_server = "http://llm.aidatatools.com"
+#emote_server = "http://localhost:5000"
 
 def send_sysinfo(data_dict):
     
