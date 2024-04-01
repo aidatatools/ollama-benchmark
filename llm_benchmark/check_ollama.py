@@ -10,8 +10,9 @@ def run_command(command):
 
 def check_ollama_version():
     res = run_command(['ollama', '--version'])
-    #print(res)
-    return res[18:]
+    ans = res.split('\n')
+    #print(ans[-1])
+    return ans[-1][18:]
 
 if __name__ == "__main__":
     check_ollama_version()

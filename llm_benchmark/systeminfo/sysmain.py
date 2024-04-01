@@ -86,10 +86,11 @@ def get_gpu_info():
     return ans
 
 def check_windows_shell():
-    parent_process = psutil.Process(os.getppid()).name().lower()
-    if 'cmd' in parent_process:
+    parent_pid = os.getppid()
+    shell_name = psutil.Process(parent_pid).name().lower()
+    if 'cmd' in shell_name:
         return 'CMD'
-    elif 'powershell' in parent_process:
+    elif 'powershell' in shell_name:
         return 'PowerShell'
     else:
         return 'Unknown'
@@ -157,7 +158,7 @@ def get_extra():
             ans['system_name'] = "Windows"
 
             prefix_exe='powershell.exe'
-            print("Python is running in:", check_windows_shell(), "on Windows")
+            #print("Python is running in:", check_windows_shell(), "on Windows")
             ans['run_in'] = f"{check_windows_shell()}"           
                         
             r1 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_Processor'],capture_output=True,text=True)
