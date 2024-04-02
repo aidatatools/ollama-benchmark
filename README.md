@@ -91,6 +91,12 @@ llm_benchmark run
 llm_benchmark run --no-sendinfo
 ```
 
+### Example #3 Benchmark run on explicitly given the path to the ollama executable (When you built your own developer version of ollama)
+
+```bash
+llm_benchmark run --ollamabin=~/code/ollama/ollama
+```
+
 ## Reference
 
 [Ollama](https://ollama.com)

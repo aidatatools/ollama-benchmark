@@ -40,7 +40,7 @@ def parse_yaml(yaml_file_path):
             print(e)
     return data
 
-def run_benchmark(models_file_path, benchmark_file_path, type):
+def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin):
     
     models_dict = parse_yaml(models_file_path)
     benchmark_dict = parse_yaml(benchmark_file_path)
@@ -71,7 +71,7 @@ def run_benchmark(models_file_path, benchmark_file_path, type):
                                     img_file_path = pkg_resources.resource_filename('llm_benchmark',f'data/img/{img}')
                                     prompt = f"{one_prompt['prompt']} {img_file_path}"
                                     print(f"prompt = {prompt}")
-                                    result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
+                                    result = subprocess.run([ollamabin, 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
                                     std_err = result.stderr
                                     #print(result.stderr)
                                     file1.write(std_err)
@@ -85,7 +85,7 @@ def run_benchmark(models_file_path, benchmark_file_path, type):
                         else:
                             for one_prompt in one_model_type['prompts']:
                                 print(f"prompt = {one_prompt['prompt']}")
-                                result = subprocess.run(['ollama', 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
+                                result = subprocess.run([ollamabin, 'run', model_name, one_prompt['prompt'],'--verbose'], capture_output=True, text=True, check=True, encoding='utf-8')
                                 std_err = result.stderr
                                 #print(result.stderr)                                   
                                 file1.write(std_err)                                    

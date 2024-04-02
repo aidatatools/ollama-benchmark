@@ -18,14 +18,14 @@ def hello(name: str):
     
 
 @app.command()
-def run(sendinfo: bool = True):
+def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
     sys_info = sysmain.get_extra()
     print(f"Total memory size : {sys_info['memory']:.2f} GB") 
     print(f"cpu_info: {sys_info['cpu']}")
     print(f"gpu_info: {sys_info['gpu']}")
     print(f"os_version: {sys_info['os_version']}")
 
-    ollama_version = check_ollama.check_ollama_version()
+    ollama_version = check_ollama.check_ollama_version(ollamabin)
     print(f"ollama_version: {ollama_version}")
     print('-'*10)
 
@@ -44,11 +44,11 @@ def run(sendinfo: bool = True):
     bench_results_info = {}
     is_simulation = False
     if is_simulation==False :
-        result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct')
+        result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct', ollamabin)
         bench_results_info.update(result1)
-        result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer')
+        result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer', ollamabin)
         bench_results_info.update(result2)
-        result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image')
+        result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image', ollamabin)
         bench_results_info.update(result3)
     else:
         bench_results_info.update({"llama2:7b":7.65})

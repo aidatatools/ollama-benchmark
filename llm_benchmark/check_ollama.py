@@ -8,11 +8,15 @@ def run_command(command):
         print(f"Error executing command '{command}': {e}")
         return None
 
-def check_ollama_version():
-    res = run_command(['ollama', '--version'])
+def check_ollama_version(ollamabin='ollama'):
+    res = run_command([ollamabin, '--version'])
     ans = res.split('\n')
     #print(ans[-1])
-    return ans[-1][18:]
+    if("warning" in ans[-1].lower()):
+        return ans[-1][27:]
+    else:
+        return ans[-1][18:]
 
 if __name__ == "__main__":
     check_ollama_version()
+    check_ollama_version('ollama')
