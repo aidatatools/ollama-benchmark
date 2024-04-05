@@ -75,8 +75,8 @@ def get_gpu_info():
             #print(f"\nGPU {i + 1} Information:")
             ans[f'{i+1}'] = {}
             ans[f'{i+1}']['id'] = f"{gpu.id}"
-            ans[f'{i+1}']['name'] = f"{gpu.id}"
-            ans[f'{i+1}']['driver'] = f"{gpu.id}"
+            ans[f'{i+1}']['name'] = f"{gpu.name}"
+            ans[f'{i+1}']['driver'] = f"{gpu.driver}"
             ans[f'{i+1}']['gpu_memory_total'] = f"{gpu.memoryTotal} MB"
             ans[f'{i+1}']['gpu_memory_free'] = f"{gpu.memoryFree} MB"
             ans[f'{i+1}']['gpu_memory_used'] = f"{gpu.memoryUsed} MB"
@@ -145,7 +145,16 @@ def get_extra():
                 for line in r2.stdout.split('\n'):
                     if ('product' in line):
                         ans['gpu']=f"{line[16:]}"
-            
+            else :
+                print(f"{get_gpu_info()['1']}")
+                try:
+                     print(get_gpu_info()['2'])
+                     print('At least two GPU cards')
+                except:
+                     print('Only one GPU card')
+                #List only the frist gpu name
+                ans['gpu']=get_gpu_info()['1']['name']
+                 
             r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
             software = f"{r2.stdout}"
             
