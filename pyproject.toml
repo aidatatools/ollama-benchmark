@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "llm_benchmark"
-version = "0.3.13"
+version = "0.3.14"
 description = "LLM Benchmark for Throughputs via Ollama"
 authors = ["Jason Chuang <chuangtcee@gmail.com>"]
 license = "MIT"
@@ -23,6 +23,7 @@ requests = "^2.31.0"
 psutil = "^5.9.8"
 GPUtil = "^1.4.0"
 lib-platform = "^1.2.10"
+setuptools = "^69.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"

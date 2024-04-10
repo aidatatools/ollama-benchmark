@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='llm_benchmark',
-    version='0.3.13',
+    version='0.3.14',
     author='Jason Chuang',
     author_email='chuangtcee@gmail.com',
     description='LLM Benchmark',
@@ -28,7 +28,8 @@ setup(
         'requests = 2.31.0',
         'psutil = 5.9.8',
         'GPUtil = 1.4.0',
-        'lib-platform = 1.2.10'
+        'lib-platform = 1.2.10',
+        'setuptools = 69.1.0'
     ],
     entry_points={
         'console_scripts': [
@@ -41,6 +42,6 @@ setup(
     # so changes in your source code are immediately reflected
     # without needing to reinstall
     options={'bdist_wheel': {'universal': True}},
-    setup_requires=['setuptools>=51.0.0', 'wheel'],
+    setup_requires=['setuptools>=69.1.0', 'wheel'],
     editable=True
 )

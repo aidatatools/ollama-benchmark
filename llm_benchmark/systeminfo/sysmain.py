@@ -75,7 +75,7 @@ def get_gpu_info():
             #print(f"\nGPU {i + 1} Information:")
             ans[f'{i+1}'] = {}
             ans[f'{i+1}']['id'] = f"{gpu.id}"
-            ans[f'{i+1}']['name'] = f"{gpu.name}"
+            ans[f'{i+1}']['name'] = f"{' '.join(gpu.name.splitlines())}"
             ans[f'{i+1}']['driver'] = f"{gpu.driver}"
             ans[f'{i+1}']['gpu_memory_total'] = f"{gpu.memoryTotal} MB"
             ans[f'{i+1}']['gpu_memory_free'] = f"{gpu.memoryFree} MB"
@@ -180,8 +180,10 @@ def get_extra():
             r3 = subprocess.run([prefix_exe,'Get-WmiObject','Win32_VideoController'],capture_output=True,text=True)
             #print(r3.stdout)
             r_gpu = subprocess.run([prefix_exe,'(Get-WmiObject Win32_VideoController).Caption'],capture_output=True,text=True)
+            str_gpu = r_gpu.stdout.strip()
+            str_gpu = ' '.join(str_gpu.splitlines())
             #print(r_gpu)
-            ans['gpu'] = r_gpu.stdout.strip()
+            ans['gpu'] = str_gpu
             r4 = subprocess.run([prefix_exe,'(Get-WmiObject Win32_OperatingSystem).Caption'],capture_output=True,text=True)
             #print(r4.stdout)
             ans['os_version'] = f"{r4.stdout}"
