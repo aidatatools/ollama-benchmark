@@ -135,16 +135,31 @@ def get_extra():
             ans['system_name'] = "Linux"
 
             print('-------Linux----------')
-            r1 = subprocess.run(['lshw','-C','cpu'],capture_output=True,text=True)
-            for line in r1.stdout.split('\n'):
-                if ('product' in line):
-                    ans['cpu']=f"{line[16:]}"
             
-            if (get_gpu_info()['0']=='no_gpu'):
-                r2 = subprocess.run(['lshw','-C','display'],capture_output=True,text=True)
-                for line in r2.stdout.split('\n'):
+            try:
+                r1 = subprocess.run(['lshw','-C','cpu'],capture_output=True,text=True)
+                for line in r1.stdout.split('\n'):
                     if ('product' in line):
-                        ans['gpu']=f"{line[16:]}"
+                        ans['cpu']=f"{line[16:]}"
+            except:
+                cmd = ['lscpu']
+                ps = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                cmd = ['grep', 'Model name']
+                grep = subprocess.Popen(cmd, stdin=ps.stdout, stdout=subprocess.PIPE,
+                        encoding='utf-8')
+                ps.stdout.close()
+                output, _ = grep.communicate()
+                python_processes = output.split('\n')
+                ans['cpu'] = python_processes[0][16:].strip() 
+
+            if (get_gpu_info()['0']=='no_gpu'):
+                try:
+                    r2 = subprocess.run(['lshw','-C','display'],capture_output=True,text=True)
+                    for line in r2.stdout.split('\n'):
+                        if ('product' in line):
+                            ans['gpu']=f"{line[16:]}"
+                except:
+                    ans['gpu']="no_gpu"
             else :
                 print(f"{get_gpu_info()['1']}")
                 try:
@@ -152,15 +167,22 @@ def get_extra():
                      print('At least two GPU cards')
                 except:
                      print('Only one GPU card')
-                #List only the frist gpu name
+                #List only the first gpu name
                 ans['gpu']=get_gpu_info()['1']['name']
-                 
-            r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
-            software = f"{r2.stdout}"
-            
-            for line in software.split('\n'):
-                if ('Description' in line):
-                    ans['os_version']=f"{line[12:]}".strip()
+
+            try:     
+                r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
+                software = f"{r2.stdout}"
+                for line in software.split('\n'):
+                    if ('Description' in line):
+                        ans['os_version']=f"{line[12:]}".strip()
+            except:
+                r2 = subprocess.run(['cat','/etc/os-release'],capture_output=True,text=True)
+                software = f"{r2.stdout}"
+                for line in software.split('\n'):
+                    if ('PRETTY_NAME' in line):
+                        ans['os_version']=f"{line[12:]}".strip()
+                            
             return ans
             
         elif(system_info.system=='Windows'):
