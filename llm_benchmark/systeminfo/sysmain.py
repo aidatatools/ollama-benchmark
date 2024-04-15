@@ -139,6 +139,19 @@ def get_extra():
             ans['system_name'] = "Linux"
 
             print('-------Linux----------')
+
+            try:     
+                r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
+                software = f"{r2.stdout}"
+                for line in software.split('\n'):
+                    if ('Description' in line):
+                        ans['os_version']=f"{line[12:]}".strip()
+            except:
+                r2 = subprocess.run(['cat','/etc/os-release'],capture_output=True,text=True)
+                software = f"{r2.stdout}"
+                for line in software.split('\n'):
+                    if ('PRETTY_NAME' in line):
+                        ans['os_version']=f"{line[12:]}".strip()
             
             try:
                 r1 = subprocess.run(['lshw','-C','cpu'],capture_output=True,text=True)
@@ -174,19 +187,7 @@ def get_extra():
                 #List only the first gpu name
                 ans['gpu']=get_gpu_info()['1']['name']
 
-            try:     
-                r2 = subprocess.run(['lsb_release','-a'],capture_output=True,text=True)
-                software = f"{r2.stdout}"
-                for line in software.split('\n'):
-                    if ('Description' in line):
-                        ans['os_version']=f"{line[12:]}".strip()
-            except:
-                r2 = subprocess.run(['cat','/etc/os-release'],capture_output=True,text=True)
-                software = f"{r2.stdout}"
-                for line in software.split('\n'):
-                    if ('PRETTY_NAME' in line):
-                        ans['os_version']=f"{line[12:]}".strip()
-                            
+                                        
             return ans
             
         elif(system_info.system=='Windows'):
@@ -217,7 +218,7 @@ def get_extra():
         return ans
 
     except:
-        print("error! when retrieving cpu, gpu, os_version")
+        print("error! when retrieving os_version, cpu, or gpu !")
     
     return ans
 
