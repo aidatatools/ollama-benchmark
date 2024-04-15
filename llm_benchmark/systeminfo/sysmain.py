@@ -101,6 +101,10 @@ def get_extra():
     ans={}
     ans['system'] = f"{system_info.system}"
     ans['memory'] = get_total_memory_size()
+    ans['cpu'] = f"unknown"
+    ans['gpu'] = f"unknown"
+    ans['os_version'] = f"unknown"
+
     try:
         if(system_info.system=='Darwin'):
             ans['system_name'] = "macOS"
@@ -213,7 +217,9 @@ def get_extra():
         return ans
 
     except:
-        print("error!")
+        print("error! when retrieving cpu, gpu, os_version")
+    
+    return ans
 
 def get_uuid():
     sys_info = get_extra()
