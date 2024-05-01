@@ -13,6 +13,8 @@ modeltypes:
   - type: instruct
     models:
       - model: mistral:7b
+      - model: llama3:8b
+      - model: phi3:3.8b
     prompts:
       - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
         keywords: cooking, recipe
@@ -29,8 +31,6 @@ modeltypes:
     models:
       - model: gemma:2b
       - model: gemma:7b
-      - model: llama2:7b
-      - model: llama2:13b
     prompts:
       - prompt: Explain Artificial Intelligence and give its applications.
         keywords:

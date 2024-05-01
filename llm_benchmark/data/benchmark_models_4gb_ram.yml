@@ -3,3 +3,4 @@
 version: 1.0
 models:
   - model: gemma:2b
+  - model: phi3:3.8b

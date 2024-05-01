@@ -5,5 +5,6 @@ models:
   - model: gemma:2b
   - model: gemma:7b
   - model: mistral:7b
-  - model: llama2:7b
+  - model: llama3:8b
+  - model: phi3:3.8b
   - model: llava:7b
