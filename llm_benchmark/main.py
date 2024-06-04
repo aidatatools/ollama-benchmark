@@ -31,7 +31,9 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
     models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
-    if(ft_mem_size>=4 and ft_mem_size <7):
+    if(ft_mem_size>=1 and ft_mem_size <4):
+        models_file_path = pkg_resourses.resource_filename('llm_benchmark','data/benchmark_models_2gb_ram.yml')
+    elif(ft_mem_size>=4 and ft_mem_size <7):
         models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
     elif(ft_mem_size>=7 and ft_mem_size <15):
         models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
