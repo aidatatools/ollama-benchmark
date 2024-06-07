@@ -3,4 +3,5 @@
 version: 1.0
 models:
   - model: qwen:1.8b
+  - model: gemma:2b
 
