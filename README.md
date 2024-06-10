@@ -33,27 +33,35 @@ On Windows, Linux, and macOS, it will detect memory RAM size to first download r
 When memory RAM size is greater than or equal to 4GB, but less than 7GB, it will check if gemma:2b exist. The program implicitly pull the model.
 
 ```bash
+ollama pull qwen:1.8b
 ollama pull gemma:2b
+ollama pull phi:2.7b
+ollama pull phi3:3.8b
 ```
 
 When memory RAM size is greater than 7GB, but less than 15GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
+ollama pull qwen:1.8b
+ollama pull phi:2.7b
 ollama pull gemma:2b
 ollama pull gemma:7b
 ollama pull mistral:7b
-ollama pull llama2:7b
+ollama pull llama3:8b
+ollama pull phi3:3.8b
 ollama pull llava:7b
 ```
 
 When memory RAM siz is greater than 15GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
+ollama pull qwen:1.8b
+ollama pull phi:2.7b
 ollama pull gemma:2b
 ollama pull gemma:7b
 ollama pull mistral:7b
-ollama pull llama2:7b
-ollama pull llama2:13b
+ollama pull llama3:8b
+ollama pull phi3:3.8b
 ollama pull llava:7b
 ollama pull llava:13b
 ```

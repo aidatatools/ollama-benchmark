@@ -3,7 +3,6 @@
 version: 1.0
 models:
   - model: qwen:1.8b
+  - model: gemma:2b
   - model: phi:2.7b
   - model: phi3:3.8b
-  - model: gemma:2b
-

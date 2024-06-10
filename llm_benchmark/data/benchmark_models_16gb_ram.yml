@@ -7,7 +7,6 @@ models:
   - model: gemma:2b
   - model: gemma:7b
   - model: mistral:7b
-  #llama3:8b = llama3:instruct (a6990ed6be41)
   - model: llama3:8b
   - model: phi3:3.8b
   - model: llava:7b
