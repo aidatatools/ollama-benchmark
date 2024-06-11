@@ -2,8 +2,7 @@
 # License: MIT
 version: 1.0
 models:
-  - model: qwen:1.8b
-  - model: phi:2.7b
+  - model: qwen2:1.5b
   - model: gemma:2b
   - model: gemma:7b
   - model: mistral:7b

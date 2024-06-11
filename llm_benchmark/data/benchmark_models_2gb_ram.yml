@@ -2,6 +2,5 @@
 # License: MIT
 version: 1.0
 models:
-  - model: qwen:1.8b
+  - model: qwen2:1.5b
   - model: gemma:2b
-
