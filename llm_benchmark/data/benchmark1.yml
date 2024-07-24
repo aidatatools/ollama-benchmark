@@ -14,8 +14,10 @@ modeltypes:
     models:
       - model: mistral:7b
       - model: llama3:8b
+      - model: llama3.1:8b
       - model: phi3:3.8b
       - model: qwen:1.8b
+      - model: qwen2:7b
       - model: phi:2.7b
     prompts:
       - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
@@ -33,6 +35,7 @@ modeltypes:
     models:
       - model: gemma:2b
       - model: gemma:7b
+      - model: gemma2:9b
     prompts:
       - prompt: Explain Artificial Intelligence and give its applications.
         keywords:
