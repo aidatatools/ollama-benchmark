@@ -2,10 +2,19 @@
 
 LLM Benchmark for Throughput via Ollama (Local LLMs)
 
+## Installation prerequisites
+
+Working [Ollama](https://ollama.com) installation.
+
 ## Installation Steps
 
+Depending on your python setup either
 ```bash
 pip install llm-benchmark
+```
+or
+```bash
+pipx install llm-benchmark
 ```
 
 ## Usage for general users directly
