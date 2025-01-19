@@ -15,7 +15,7 @@ modeltypes:
       - model: mistral:7b
       - model: llama3:8b
       - model: llama3.1:8b
-      - model: phi3:3.8b
+      - model: phi4:14b
       - model: qwen:1.8b
       - model: qwen2:7b
       - model: phi:2.7b

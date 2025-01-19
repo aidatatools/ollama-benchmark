@@ -62,7 +62,7 @@ ollama pull llava:7b
 When memory RAM siz is greater than 15GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
-ollama pull phi3:3.8b
+ollama pull phi4:14b
 ollama pull qwen2:7b
 ollama pull gemma2:9b
 ollama pull mistral:7b
