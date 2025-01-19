@@ -24,11 +24,11 @@ jobs:
           python -m pip install --upgrade build twine
           python -m build
           twine check --strict dist/*
+          
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          attestations: true
 
       - name: Get Asset name
         run: |
