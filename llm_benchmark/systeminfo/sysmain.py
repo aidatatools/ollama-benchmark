@@ -95,6 +95,8 @@ def check_windows_shell():
     else:
         return 'Unknown'
 
+def get_linux_gpu_names(gpu_dict):
+    return '\n'.join(gpu['name'] for key, gpu in gpu_dict.items() if key.isdigit() and key != '0')
 
 def get_extra():
     system_info = platform.uname()
@@ -180,13 +182,13 @@ def get_extra():
             else :
                 print(f"{get_gpu_info()['1']}")
                 try:
-                     print(get_gpu_info()['2'])
-                     print('At least two GPU cards')
+                    print(get_gpu_info()['2'])
+                    print('At least two GPU cards')
+                    ans['gpu'] = get_linux_gpu_names(get_gpu_info())
                 except:
-                     print('Only one GPU card')
-                #List only the first gpu name
-                ans['gpu']=get_gpu_info()['1']['name']
-
+                    print('Only one GPU card')
+                    #List only the first gpu name
+                    ans['gpu']=get_gpu_info()['1']['name']
                                         
             return ans
             
