@@ -25,11 +25,11 @@ setup(
         'typer==0.11.0',
         'ollama==0.2.1',
         'pyyaml==6.0.1',
-        'requests==2.31.0',
+        'requests==2.32.0',
         'psutil==5.9.8',
         'GPUtil==1.4.0',
         'lib-platform==1.2.10',
-        'setuptools==69.1.0'
+        'setuptools>=70.0.0'
     ],
     entry_points={
         'console_scripts': [
@@ -42,6 +42,6 @@ setup(
     # so changes in your source code are immediately reflected
     # without needing to reinstall
     options={'bdist_wheel': {'universal': True}},
-    setup_requires=['setuptools>=69.1.0', 'wheel'],
+    setup_requires=['setuptools>=70.0.0', 'wheel'],
     editable=True
 )
