@@ -1,0 +1,75 @@
+# Author: Jason Chuang
+# License: MIT
+# Created: 2025-02-02
+version: 2.0
+modeltypes:
+  - type: chat
+    prompts:
+      - prompt: What are your thoughts on the latest scientific discovery regarding black holes?
+        keywords: science, recent
+  - type: completion
+    prompts:
+      - prompt: In a world where time travel is possible, a scientist invents a device that allows people to visit any historical event. One day, a young woman decides to travel back in time to...
+        keywords:
+  - type: instruct
+    models:
+      - model: mistral:7b
+      - model: llama3:8b
+      - model: llama3.1:8b
+      - model: phi4:14b
+      - model: qwen:1.8b
+      - model: qwen2:7b
+      - model: phi:2.7b
+    prompts:
+      - prompt: Write a step-by-step guide on how to bake a chocolate cake from scratch.
+        keywords: cooking, recipe
+      - prompt: Develop a python function that solves the following problem, sudoku game
+        keywords: python, sudoku
+      - prompt: Create a dialogue between two characters that discusses economic crisis
+        keywords: dialogue
+      - prompt: In a forest, there are brave lions living there. Please continue the story.
+        keywords: sentence completition
+      - prompt: I'd like to book a flight for 4 to Seattle in U.S.
+        keywords: flight booking
+  - type: question-answer
+    reference_url: https://www.turing.com/interview-questions/artificial-intelligence
+    models:
+      - model: gemma:2b
+      - model: gemma:7b
+      - model: gemma2:9b
+    prompts:
+      - prompt: Explain Artificial Intelligence and give its applications.
+        keywords:
+      - prompt: How are machine learning and AI related?
+        keywords:
+      - prompt: What is Deep Learning based on?
+        keywords:
+      - prompt: What is the full form of LSTM?
+        keywords:
+      - prompt: What are different components of GAN?
+        keywords:
+  - type: vision-image
+    reference_url: https://chuangtc.com/Research/llm-vlm.php
+    models:
+      - model: llava:7b
+      - model: llava:13b
+    prompts:
+      - prompt: Describe the image,
+        keywords: sample1.jpg,sample2.jpg,sample3.jpg,sample4.jpg,sample5.jpg
+  - type: instruction-question-answer-code-generation
+    models:
+      - model: deepseek-r1:1.5b
+      - model: deepseek-r1:8b
+      - model: deepseek-r1:14b
+      - model: deepseek-r1:32b
+    prompts:
+      - prompt: Summarize the key differences between classical and operant conditioning in psychology.
+        keywords: Instruction-Following
+      - prompt: Translate the following English paragraph into Chinese and elaborate more -> Artificial intelligence is transforming various industries by enhancing efficiency and enabling new capabilities.
+        keywords: Instruction-Following
+      - prompt: What are the main causes of the American Civil War?
+        keywords: Question-Answering
+      - prompt: How does photosynthesis contribute to the carbon cycle?
+        keywords: Question-Answering
+      - prompt: Develop a python function that solves the following problem, sudoku game.
+        keywords: Code Generation

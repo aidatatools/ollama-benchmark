@@ -30,7 +30,7 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
     print('-'*10)
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
-    models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
+    models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_32gb_ram.yml')
     if(ft_mem_size>=1 and ft_mem_size <2):
         models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_2gb_ram.yml')
     elif(ft_mem_size>=2 and ft_mem_size <4):
@@ -39,11 +39,13 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
         models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
     elif(ft_mem_size>=7 and ft_mem_size <15):
         models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
+    elif(ft_mem_size>=15 and ft_mem_size <31):
+        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
 
     check_models.pull_models(models_file_path)
     print('-'*10)
 
-    benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark1.yml')
+    benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark2.yml')
 
     bench_results_info = {}
     is_simulation = False
@@ -54,6 +56,8 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
         bench_results_info.update(result2)
         result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image', ollamabin)
         bench_results_info.update(result3)
+        result4 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruction-question-answer-code-generation', ollamabin)
+        bench_results_info.update(result4)
     else:
         bench_results_info.update({"llama2:7b":7.65})
         bench_results_info.update({"gemma2:7b":17.77})

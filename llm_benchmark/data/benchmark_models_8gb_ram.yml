@@ -1,10 +1,11 @@
 # Author: Jason Chuang
 # License: MIT
-version: 1.0
+# Created: 2025-02-02
+version: 2.0
 models:
   - model: phi3:3.8b
-  - model: qwen2:7b
   - model: gemma2:9b
   - model: mistral:7b
   - model: llama3.1:8b
+  - model: deepseek-r1:8b
   - model: llava:7b

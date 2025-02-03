@@ -3,10 +3,6 @@
 # Created: 2025-02-02
 version: 2.0
 models:
-  - model: gemma2:9b
-  - model: mistral:7b
   - model: phi4:14b
-  - model: deepseek-r1:8b
   - model: deepseek-r1:14b
-  - model: llava:7b
-  - model: llava:13b
+  - model: deepseek-r1:32b
