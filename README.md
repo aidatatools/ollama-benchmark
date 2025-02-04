@@ -9,10 +9,13 @@ Working [Ollama](https://ollama.com) installation.
 ## Installation Steps
 
 Depending on your python setup either
+
 ```bash
 pip install llm-benchmark
 ```
+
 or
+
 ```bash
 pipx install llm-benchmark
 ```
@@ -42,7 +45,7 @@ On Windows, Linux, and macOS, it will detect memory RAM size to first download r
 When memory RAM size is greater than or equal to 4GB, but less than 7GB, it will check if gemma:2b exist. The program implicitly pull the model.
 
 ```bash
-ollama pull qwen:1.8b
+ollama pull deepseek-r1:1.5b
 ollama pull gemma:2b
 ollama pull phi:2.7b
 ollama pull phi3:3.8b
@@ -52,23 +55,31 @@ When memory RAM size is greater than 7GB, but less than 15GB, it will check if t
 
 ```bash
 ollama pull phi3:3.8b
-ollama pull qwen2:7b
 ollama pull gemma2:9b
 ollama pull mistral:7b
 ollama pull llama3.1:8b
+ollama pull deepseek-r1:8b
 ollama pull llava:7b
 ```
 
-When memory RAM siz is greater than 15GB, it will check if these models exist. The program implicitly pull these models
+When memory RAM siz is greater than 15GB, but less than 31GB, it will check if these models exist. The program implicitly pull these models
+
+```bash
+ollama pull gemma2:9b
+ollama pull mistral:7b
+ollama pull phi4:14b
+ollama pull deepseek-r1:8b
+ollama pull deepseek-r1:14b
+ollama pull llava:7b
+ollama pull llava:13b
+```
+
+When memory RAM siz is greater than 31GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
 ollama pull phi4:14b
-ollama pull qwen2:7b
-ollama pull gemma2:9b
-ollama pull mistral:7b
-ollama pull llama3.1:8b
-ollama pull llava:7b
-ollama pull llava:13b
+ollama pull deepseek-r1:14b
+ollama pull deepseek-r1:32b
 ```
 
 ## Python Poetry manually(advanced) installation
