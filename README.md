@@ -62,7 +62,7 @@ ollama pull deepseek-r1:8b
 ollama pull llava:7b
 ```
 
-When memory RAM siz is greater than 15GB, but less than 31GB, it will check if these models exist. The program implicitly pull these models
+When memory RAM size is greater than 15GB, but less than 31GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
 ollama pull gemma2:9b
@@ -74,7 +74,7 @@ ollama pull llava:7b
 ollama pull llava:13b
 ```
 
-When memory RAM siz is greater than 31GB, it will check if these models exist. The program implicitly pull these models
+When memory RAM size is greater than 31GB, it will check if these models exist. The program implicitly pull these models
 
 ```bash
 ollama pull phi4:14b
