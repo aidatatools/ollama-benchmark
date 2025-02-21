@@ -121,6 +121,26 @@ llm_benchmark run --no-sendinfo
 llm_benchmark run --ollamabin=~/code/ollama/ollama
 ```
 
+### run custom bechmark models
+
+1. Create a custom benchmark file like following yaml format, replace with your own benchmark models
+
+```yaml
+# Author: Jason Chuang
+# License: MIT
+# Created: 2025-02-02
+version: 2.0
+models:
+  - model: deepseek-r1:1.5b
+  - model: gemma:2b
+```
+
+
+```bash
+llm_benchmark run --custombenchmark=path/to/custom/benchmark.yml
+
+```
+
 ## Reference
 
 [Ollama](https://ollama.com)

@@ -18,7 +18,7 @@ def hello(name: str):
     
 
 @app.command()
-def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
+def run(ollamabin: str = 'ollama' , sendinfo : bool = True , custombenchmark : str = None):
     sys_info = sysmain.get_extra()
     print(f"Total memory size : {sys_info['memory']:.2f} GB") 
     print(f"cpu_info: {sys_info['cpu']}")
@@ -30,17 +30,23 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True ):
     print('-'*10)
 
     ft_mem_size = float(f"{sys_info['memory']:.2f}")
-    models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_32gb_ram.yml')
-    if(ft_mem_size>=1 and ft_mem_size <2):
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_2gb_ram.yml')
-    elif(ft_mem_size>=2 and ft_mem_size <4):
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_3gb_ram.yml')
-    elif(ft_mem_size>=4 and ft_mem_size <7):
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
-    elif(ft_mem_size>=7 and ft_mem_size <15):
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
-    elif(ft_mem_size>=15 and ft_mem_size <31):
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
+    if custombenchmark:
+       models_file_path = custombenchmark
+       sendinfo = False
+       print(f"running custom benchmark from models_file_path: {models_file_path}")
+       print(f"Disabling sendinfo for custom benchmark")
+    else:
+        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_32gb_ram.yml')
+        if(ft_mem_size>=1 and ft_mem_size <2):
+            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_2gb_ram.yml')
+        elif(ft_mem_size>=2 and ft_mem_size <4):
+            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_3gb_ram.yml')
+        elif(ft_mem_size>=4 and ft_mem_size <7):
+            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
+        elif(ft_mem_size>=7 and ft_mem_size <15):
+            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
+        elif(ft_mem_size>=15 and ft_mem_size <31):
+            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
 
     check_models.pull_models(models_file_path)
     print('-'*10)
