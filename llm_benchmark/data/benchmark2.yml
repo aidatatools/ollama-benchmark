@@ -73,3 +73,16 @@ modeltypes:
         keywords: Question-Answering
       - prompt: Develop a python function that solves the following problem, sudoku game.
         keywords: Code Generation
+  - type: custom-model
+    models:
+    prompts:
+      - prompt: Summarize the key differences between classical and operant conditioning in psychology.
+        keywords: Instruction-Following
+      - prompt: Translate the following English paragraph into Chinese and elaborate more -> Artificial intelligence is transforming various industries by enhancing efficiency and enabling new capabilities.
+        keywords: Instruction-Following
+      - prompt: What are the main causes of the American Civil War?
+        keywords: Question-Answering
+      - prompt: How does photosynthesis contribute to the carbon cycle?
+        keywords: Question-Answering
+      - prompt: Develop a python function that solves the following problem, sudoku game.
+        keywords: Code Generation

@@ -46,8 +46,18 @@ def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 
     benchmark_dict = parse_yaml(benchmark_file_path)
     model_type = type
     allowed_models = {e['model'] for e in models_dict['models']}
-    #print(allowed_models)
+    
     ans={}
+    if (model_type=='custom-model'):
+        print("Running custom-model")
+        #dynamically add models to benchmark_dict for custom-model
+        for model in models_dict['models']:
+            for one_model_type in benchmark_dict['modeltypes']:
+                if one_model_type['type'] == 'custom-model':
+                    if one_model_type['models'] is None:
+                        one_model_type['models'] = []
+                    one_model_type['models'].append(model)
+
     # Writing to file        
     for one_model_type in benchmark_dict['modeltypes']:
         #print(one_model_type)

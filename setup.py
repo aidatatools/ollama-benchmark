@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='llm_benchmark',
-    version='0.4.2',
+    version='0.4.3',
     author='Jason Chuang',
     author_email='chuangtcee@gmail.com',
     description='LLM Benchmark',
@@ -41,7 +41,7 @@ setup(
     # to install your package in editable mode
     # so changes in your source code are immediately reflected
     # without needing to reinstall
-    options={'bdist_wheel': {'universal': True}},
+    options={'bdist_wheel': {'universal': False}},
     setup_requires=['setuptools>=70.0.0', 'wheel'],
     editable=True
 )

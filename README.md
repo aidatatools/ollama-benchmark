@@ -121,6 +121,24 @@ llm_benchmark run --no-sendinfo
 llm_benchmark run --ollamabin=~/code/ollama/ollama
 ```
 
+### Example #4 run custom bechmark models
+
+1. Create a custom benchmark file like following yaml format, replace with your own benchmark models, remember to use double quote for your model name
+
+```yaml
+file_name: "custombenchmarkmodels.yml"
+version: 2.0.custom
+models:
+  - model: "deepseek-r1:1.5b"
+  - model: "qwen:0.5b"
+```
+
+2. run with the flag and point to the path of custombenchmarkmodels.yml
+
+```bash
+llm_benchmark run --custombenchmark=path/to/custombenchmarkmodels.yml
+```
+
 ## Reference
 
 [Ollama](https://ollama.com)
