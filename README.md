@@ -121,7 +121,7 @@ llm_benchmark run --no-sendinfo
 llm_benchmark run --ollamabin=~/code/ollama/ollama
 ```
 
-### Example #4 run custom bechmark models
+### Example #4 run custom benchmark models
 
 1. Create a custom benchmark file like following yaml format, replace with your own benchmark models, remember to use double quote for your model name
 
