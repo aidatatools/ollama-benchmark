@@ -46,6 +46,10 @@ if __name__ == "__main__":
         for x in models_dict['models']:
             model_name = x['model']
             print(model_name)
-            result = subprocess.run(['ollama', 'pull', model_name], stdout=subprocess.PIPE)
-            result.stdout
+            try:
+                result = subprocess.run(['ollama', 'pull', model_name], stdout=subprocess.PIPE)
+                result.stdout
+            except:
+                client = ollama.Client(host='http://127.0.0.1:11434')
+                client.pull(model_name)
     

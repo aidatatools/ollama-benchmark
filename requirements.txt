@@ -16,7 +16,7 @@ lib-platform==1.2.10
 lib-registry==2.0.10
 markdown-it-py==3.0.0
 mdurl==0.1.2
-ollama==0.1.8
+ollama==0.4.8
 psutil==5.9.8
 Pygments==2.17.2
 PyYAML==6.0.1
