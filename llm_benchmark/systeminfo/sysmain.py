@@ -55,6 +55,29 @@ def get_disk_info():
     ans['free_disk_space'] = f"{disk_info.free}"
     ans['disk_space_utilization'] = f" {disk_info.percent:.2f}%"
 
+# AMD GPU on Linux Only
+def get_gpu_names_rocminfo():
+    try:
+        result = subprocess.run(['rocminfo'], capture_output=True, text=True, timeout=10)
+        if result.returncode != 0:
+            return None
+
+        gpu_names = []
+        lines = result.stdout.split('\n')
+
+        for line in lines:
+            # Marketing Name is the most user-friendly identifier
+            if 'Marketing Name:' in line:
+                name = line.split('Marketing Name:')[1].strip()
+
+                if name and name != 'N/A' and "Intel" not in name:
+                    gpu_names.append(name)
+
+        return gpu_names
+    except Exception as e:
+        print(f"rocminfo failed: {e}")
+        return None
+
 #Only Nvidia GPU on Windows and Linux
 def get_gpu_info():    
 
@@ -66,7 +89,7 @@ def get_gpu_info():
         gpus = GPUtil.getGPUs()
     
     if not gpus:
-        print("\nNo GPU detected.")
+        print("\nNo NVIDIA GPU detected.")
         ans['0'] = "no_gpu"
     else:
         ans['0'] = "there_is_gpu"
@@ -178,7 +201,22 @@ def get_extra():
                         if ('product' in line):
                             ans['gpu']=f"{line[16:]}"
                 except:
-                    ans['gpu']="no_gpu"
+                    try: 
+                        amd_gpus = get_gpu_names_rocminfo() 
+                        if (amd_gpus is None):
+                            raise Exception("No AMD GPUs")
+
+                        amd_ans={}
+                        amd_ans['0'] = "there_is_amd_gpu"
+
+                        for i, gpu in enumerate(amd_gpus):
+                            #print(f"\nGPU {i + 1} Information:")
+                            amd_ans[f'{i+1}'] = {}
+                            amd_ans[f'{i+1}']['id'] = f"{i}"
+                            amd_ans[f'{i+1}']['name'] = f"{gpu}"  
+                        ans['gpu'] = get_linux_gpu_names(amd_ans)                      
+                    except:
+                        ans['gpu']="no_gpu"
             else :
                 print(f"{get_gpu_info()['1']}")
                 try:
