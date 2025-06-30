@@ -2,6 +2,8 @@
 
 LLM Benchmark for Throughput via Ollama (Local LLMs)
 
+Measure how fast your local LLMs *really* are—with a simple, cross-platform CLI tool that tells you the tokens-per-second truth.
+
 ## Installation prerequisites
 
 Working [Ollama](https://ollama.com) installation.
