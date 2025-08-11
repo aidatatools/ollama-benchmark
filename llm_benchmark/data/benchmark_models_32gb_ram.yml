@@ -5,4 +5,4 @@ version: 2.0
 models:
   - model: phi4:14b
   - model: deepseek-r1:14b
-  - model: deepseek-r1:32b
+  - model: gpt-oss:20b

@@ -61,7 +61,7 @@ modeltypes:
       - model: deepseek-r1:1.5b
       - model: deepseek-r1:8b
       - model: deepseek-r1:14b
-      - model: deepseek-r1:32b
+      - model: gpt-oss:20b
     prompts:
       - prompt: Summarize the key differences between classical and operant conditioning in psychology.
         keywords: Instruction-Following
