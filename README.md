@@ -81,7 +81,7 @@ When memory RAM size is greater than 31GB, it will check if these models exist. 
 ```bash
 ollama pull phi4:14b
 ollama pull deepseek-r1:14b
-ollama pull deepseek-r1:32b
+ollama pull gpt-oss:20b
 ```
 
 ## Python Poetry manually(advanced) installation
