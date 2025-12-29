@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='llm_benchmark',
-    version='0.5.0',
+    version='0.5.1',
     author='Jason Chuang',
     author_email='chuangtcee@gmail.com',
     description='LLM Benchmark',
@@ -25,7 +25,7 @@ setup(
     ],
     python_requires='>=3.10',
     install_requires=[
-        'typer==0.15.1',
+        'typer==0.21.0',
         'ollama==0.6.1',
         'pyyaml==6.0.1',
         'requests==2.32.4',
