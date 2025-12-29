@@ -58,7 +58,7 @@ llm_benchmark run
 
 ![llm-benchmark](https://github.com/aidatatools/ollama-benchmark/blob/main/llm-benchmark.gif)
 
-It's tested on Python 3.9 and above.
+It's tested on Python 3.10 and above.
 
 ## ollama installation with the following models installed
 
