@@ -5,9 +5,9 @@ from llm_benchmark import run_benchmark
 
 from .systeminfo import sysmain
 
-from .security_connection import connection 
+from .security_connection import connection
 
-import pkg_resources
+from importlib.resources import files
 
 
 app = typer.Typer()
@@ -18,7 +18,11 @@ def hello(name: str):
     
 
 @app.command()
-def run(ollamabin: str = 'ollama' , sendinfo : bool = True , custombenchmark : str = None):
+def run(
+    ollamabin: str = typer.Option('ollama', "--ollamabin"),
+    sendinfo: bool = typer.Option(True, "--sendinfo/--no-sendinfo"),
+    custombenchmark: str = typer.Option(None, "--custombenchmark")
+):
     sys_info = sysmain.get_extra()
     print(f"Total memory size : {sys_info['memory']:.2f} GB") 
     print(f"cpu_info: {sys_info['cpu']}")
@@ -37,22 +41,22 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True , custombenchmark : s
         print(f"running custom benchmark from models_file_path: {models_file_path}")
         print(f"Disabling sendinfo for custom benchmark")
     else:
-        models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_32gb_ram.yml')
+        models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_32gb_ram.yml'))
         if(ft_mem_size>=1 and ft_mem_size <2):
-            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_2gb_ram.yml')
+            models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_2gb_ram.yml'))
         elif(ft_mem_size>=2 and ft_mem_size <4):
-            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_3gb_ram.yml')
+            models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_3gb_ram.yml'))
         elif(ft_mem_size>=4 and ft_mem_size <7):
-            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_4gb_ram.yml')
+            models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_4gb_ram.yml'))
         elif(ft_mem_size>=7 and ft_mem_size <15):
-            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_8gb_ram.yml')
+            models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_8gb_ram.yml'))
         elif(ft_mem_size>=15 and ft_mem_size <31):
-            models_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark_models_16gb_ram.yml')
+            models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_16gb_ram.yml'))
 
     check_models.pull_models(models_file_path)
     print('-'*10)
 
-    benchmark_file_path = pkg_resources.resource_filename('llm_benchmark','data/benchmark2.yml')
+    benchmark_file_path = str(files('llm_benchmark').joinpath('data/benchmark2.yml'))
 
     bench_results_info = {}
     is_simulation = False
@@ -87,14 +91,14 @@ def run(ollamabin: str = 'ollama' , sendinfo : bool = True , custombenchmark : s
 
 
 @app.command()
-def goodbye(name: str, formal: bool = False):
+def goodbye(name: str, formal: bool = typer.Option(False, "--formal")):
     if formal:
         print(f"Goodbye Mr.(Ms.) {name}. Have a good day.")
     else:
         print(f"Bye {name}!")
 
 @app.command()
-def sysinfo(formal: bool = True):
+def sysinfo(formal: bool = typer.Option(True, "--formal")):
     if formal:
         sys_info = sysmain.get_extra()
         sys_info['uuid'] = f"{sysmain.get_uuid()}"

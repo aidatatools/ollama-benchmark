@@ -2,11 +2,31 @@
 
 LLM Benchmark for Throughput via Ollama (Local LLMs)
 
-Measure how fast your local LLMs *really* are—with a simple, cross-platform CLI tool that tells you the tokens-per-second truth.
+Measure how fast your local LLMs _really_ are—with a simple, cross-platform CLI tool that tells you the tokens-per-second truth.
 
 ## Installation prerequisites
 
 Working [Ollama](https://ollama.com) installation.
+
+## To create a virtual environment via python3 -m venv
+
+```bash
+python3 -m venv .venv
+## On Linux and macOS
+source .venv/bin/activate
+## On Windows Powershell or Cmd
+.\.venv\Scripts\activate
+```
+
+## To create a virtual environment via uv (For uv virtual environments (recommended for Python 3.13))
+
+```bash
+uv venv .venv --python 3.13
+## On Linux and macOS
+source .venv/bin/activate
+## On Windows Powershell or Cmd
+.\.venv\Scripts\activate
+```
 
 ## Installation Steps
 
@@ -20,6 +40,12 @@ or
 
 ```bash
 pipx install llm-benchmark
+```
+
+or uv
+
+```bash
+uv pip install llm-benchmark
 ```
 
 ## Usage for general users directly
