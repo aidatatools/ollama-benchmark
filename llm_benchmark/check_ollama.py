@@ -1,7 +1,5 @@
 import subprocess
-import json
 from urllib.parse import urlparse
-import ollama
 import requests
 
 def run_command(command):

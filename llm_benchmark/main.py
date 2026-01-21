@@ -9,9 +9,6 @@ from .security_connection import connection
 
 from importlib.resources import files
 
-import base64
-
-
 app = typer.Typer()
 
 @app.command()
