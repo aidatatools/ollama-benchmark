@@ -1,4 +1,8 @@
 import subprocess
+import json
+from urllib.parse import urlparse
+import ollama
+import requests
 
 def run_command(command):
     try:
@@ -16,6 +20,12 @@ def check_ollama_version(ollamabin='ollama'):
         return ans[-1][27:]
     else:
         return ans[-1][18:]
+
+def check_ollama_version_host(host: str):
+    response = requests.get(f"{host}/api/version")
+    if response.status_code == 200:
+        data = response.json()
+        return data.get('version', 'unknown')
 
 if __name__ == "__main__":
     check_ollama_version()

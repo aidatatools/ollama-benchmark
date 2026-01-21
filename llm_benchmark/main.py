@@ -9,27 +9,37 @@ from .security_connection import connection
 
 from importlib.resources import files
 
+import base64
+
 
 app = typer.Typer()
 
 @app.command()
 def hello(name: str):
     print(f"Hello {name}!")
-    
+
 
 @app.command()
 def run(
     ollamabin: str = typer.Option('ollama', "--ollamabin"),
+    host: str = typer.Option(None, "--host"),
     sendinfo: bool = typer.Option(True, "--sendinfo/--no-sendinfo"),
     custombenchmark: str = typer.Option(None, "--custombenchmark")
 ):
     sys_info = sysmain.get_extra()
-    print(f"Total memory size : {sys_info['memory']:.2f} GB") 
+    print(f"Total memory size : {sys_info['memory']:.2f} GB")
     print(f"cpu_info: {sys_info['cpu']}")
     print(f"gpu_info: {sys_info['gpu']}")
     print(f"os_version: {sys_info['os_version']}")
+    if host:
+        print(f"Using ollama host: {host}")
+    else:
+        print(f"Using ollama binary: {ollamabin}")
 
-    ollama_version = check_ollama.check_ollama_version(ollamabin)
+    if host:
+        ollama_version = check_ollama.check_ollama_version_host(host)
+    else:
+        ollama_version = check_ollama.check_ollama_version(ollamabin)
     print(f"ollama_version: {ollama_version}")
     print('-'*10)
 
@@ -53,7 +63,7 @@ def run(
         elif(ft_mem_size>=15 and ft_mem_size <31):
             models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_16gb_ram.yml'))
 
-    check_models.pull_models(models_file_path)
+    check_models.pull_models(models_file_path, host=host)
     print('-'*10)
 
     benchmark_file_path = str(files('llm_benchmark').joinpath('data/benchmark2.yml'))
@@ -61,16 +71,16 @@ def run(
     bench_results_info = {}
     is_simulation = False
     if custombenchmark:
-        result0 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'custom-model', ollamabin)
+        result0 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'custom-model', ollamabin, host)
         bench_results_info.update(result0)
     elif is_simulation==False :
-        result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct', ollamabin)
+        result1 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruct', ollamabin, host)
         bench_results_info.update(result1)
-        result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer', ollamabin)
+        result2 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'question-answer', ollamabin, host)
         bench_results_info.update(result2)
-        result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image', ollamabin)
+        result3 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'vision-image', ollamabin, host)
         bench_results_info.update(result3)
-        result4 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruction-question-answer-code-generation', ollamabin)
+        result4 = run_benchmark.run_benchmark(models_file_path,benchmark_file_path, 'instruction-question-answer-code-generation', ollamabin, host)
         bench_results_info.update(result4)
     else:
         bench_results_info.update({"llama2:7b":7.65})
@@ -103,7 +113,7 @@ def sysinfo(formal: bool = typer.Option(True, "--formal")):
         sys_info = sysmain.get_extra()
         sys_info['uuid'] = f"{sysmain.get_uuid()}"
         #print(sys_info.items())
-        print(f"memory : {sys_info['memory']:.2f} GB") 
+        print(f"memory : {sys_info['memory']:.2f} GB")
         print(f"cpu_info: {sys_info['cpu']}")
         print(f"gpu_info: {sys_info['gpu']}")
         print(f"os_version: {sys_info['os_version']}")

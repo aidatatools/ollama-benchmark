@@ -149,7 +149,13 @@ llm_benchmark run --no-sendinfo
 llm_benchmark run --ollamabin=~/code/ollama/ollama
 ```
 
-### Example #4 run custom benchmark models
+### Example #4 set an explicit Ollama HTTP host
+
+```bash
+llm_benchmark run --host=http://127.0.0.1:11434
+```
+
+### Example #5 run custom benchmark models
 
 1. Create a custom benchmark file like following yaml format, replace with your own benchmark models, remember to use double quote for your model name
 
