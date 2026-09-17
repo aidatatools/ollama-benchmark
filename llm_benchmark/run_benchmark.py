@@ -6,8 +6,8 @@ from importlib.resources import files
 
 parser = argparse.ArgumentParser(
     prog="python3 check_models.py",
-    description="Before running check_models.py, please make sure you installed ollama successfully \
-        on macOS, Linux, or on Windows Powershell. You can check the website: https://ollama.com",
+    description="Before running check_models.py, please make sure you installed ollama successfully"
+    "on macOS, Linux, or on Windows Powershell. You can check the website: https://ollama.com",
     epilog="Author: Jason Chuang")
 
 parser.add_argument("-v",
@@ -39,6 +39,17 @@ def parse_yaml(yaml_file_path):
         except yaml.YAMLError as e:
             print(e)
     return data
+
+def stop_model(ollamabin: str, model_name: str):
+    """Stop a running Ollama model to free up memory before starting a new benchmark"""
+    try:
+        subprocess.run([ollamabin, 'stop', model_name], capture_output=True, check=True, encoding='utf-8')
+        print(f"Stopped model: {model_name}")
+    except subprocess.CalledProcessError as e:
+        # If the model wasn't running, that's fine - just continue
+        print(f"Did not stop model {model_name}: {e.stderr if e.stderr else 'Model was not running'}")
+    except Exception as e:
+        print(f"Unexpected error stopping model {model_name}: {str(e)}")
 
 def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 'ollama'):
     
@@ -73,6 +84,11 @@ def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 
                         model_name = onemodel['model']
                         print(f'model_name =    {model_name}')
                         file1.write(f'\nmodel_name =    {model_name}\n')
+                        
+                        # Stop the previous model before starting a new one (if there is one)
+                        if len(ans) > 0 and model_name != list(ans.keys())[-1]:
+                            last_model = list(ans.keys())[-1]
+                            stop_model(ollamabin, last_model)
                         
                         if model_name.startswith('llava'):
                             for one_prompt in one_model_type['prompts']:
@@ -125,5 +141,3 @@ if __name__ == "__main__":
     if (args.models is not None) and (args.benchmark is not None) and (args.type is not None):
         run_benchmark(args.models, args.benchmark, args.type, args.ollamabin)
         print('-'*40)
-        
-        
