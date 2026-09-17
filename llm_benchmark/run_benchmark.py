@@ -116,7 +116,8 @@ def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 
                         print("-"*40)
                         file1.write("\n"+"-"*40)
                     file1.close()
-                    
+                    print (f"Stopping model {model_name}")
+                    subprocess.run([ollamabin, 'stop', model_name], capture_output=False, text=True, check=False, encoding='utf-8')                    
     return ans
 
 if __name__ == "__main__": 
@@ -126,4 +127,6 @@ if __name__ == "__main__":
         run_benchmark(args.models, args.benchmark, args.type, args.ollamabin)
         print('-'*40)
         
+
         
+
