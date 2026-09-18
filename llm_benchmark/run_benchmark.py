@@ -30,6 +30,11 @@ parser.add_argument("-t",
                     type=str,
                     help="provide benchmark model type. ex, instruct")
 
+parser.add_argument("--ollamabin",
+                    type=str,
+                    default='ollama',
+                    help="path or command name for the ollama binary (default: ollama)")
+
 
 def parse_yaml(yaml_file_path):
     with open(yaml_file_path, 'r') as stream:
@@ -39,6 +44,16 @@ def parse_yaml(yaml_file_path):
         except yaml.YAMLError as e:
             print(e)
     return data
+
+def stop_model(ollamabin: str, model_name: str):
+    """Stop a running Ollama model to free up memory before starting the next benchmark"""
+    try:
+        subprocess.run([ollamabin, 'stop', model_name], capture_output=True, check=True, encoding='utf-8')
+        print(f"Stopped model: {model_name}")
+    except subprocess.CalledProcessError as e:
+        print(f"Did not stop model {model_name}: {e.stderr if e.stderr else 'Model was not running'}")
+    except Exception as e:
+        print(f"Unexpected error stopping model {model_name}: {str(e)}")
 
 def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 'ollama'):
     
@@ -116,7 +131,9 @@ def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 
                         print("-"*40)
                         file1.write("\n"+"-"*40)
                     file1.close()
-                    
+
+                    stop_model(ollamabin, model_name)
+
     return ans
 
 if __name__ == "__main__": 
