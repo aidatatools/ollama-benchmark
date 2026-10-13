@@ -28,13 +28,26 @@ def parse_yaml(yaml_file_path):
             print(e)
     return data
 
-def pull_models(models_file_path):
+def _model_tag(model_name):
+    if ':' not in model_name.rsplit('/', 1)[-1]:
+        return model_name + ':latest'
+    return model_name
+
+
+def pull_models(models_file_path, skip_existing=False):
     print(f"LLM models file path：{models_file_path}")
     print(f"Checking and pulling the following LLM models")
     models_dict = parse_yaml(models_file_path)
+    local_models = set()
+    if skip_existing:
+        local_models = {_model_tag(model.model) for model in ollama.list().models
+                        if model.model is not None}
     for x in models_dict['models']:
         model_name = x['model']
         print(model_name)
+        if skip_existing and _model_tag(model_name) in local_models:
+            print(f"Using local model: {model_name}")
+            continue
         ollama.pull(model_name)
 
 if __name__ == "__main__": 

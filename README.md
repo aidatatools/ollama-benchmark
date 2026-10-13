@@ -167,6 +167,8 @@ models:
 llm_benchmark run --custombenchmark=path/to/custombenchmarkmodels.yml
 ```
 
+Custom benchmarks use models already installed in Ollama without pulling them from a registry. Models that are not installed are pulled as usual. The default benchmark keeps updating its configured models.
+
 ## Reference
 
 [Ollama](https://ollama.com)
