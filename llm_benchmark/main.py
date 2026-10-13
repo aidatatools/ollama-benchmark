@@ -53,7 +53,7 @@ def run(
         elif(ft_mem_size>=15 and ft_mem_size <31):
             models_file_path = str(files('llm_benchmark').joinpath('data/benchmark_models_16gb_ram.yml'))
 
-    check_models.pull_models(models_file_path)
+    check_models.pull_models(models_file_path, skip_existing=bool(custombenchmark))
     print('-'*10)
 
     benchmark_file_path = str(files('llm_benchmark').joinpath('data/benchmark2.yml'))
