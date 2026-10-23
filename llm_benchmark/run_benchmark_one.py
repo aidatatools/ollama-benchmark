@@ -43,7 +43,7 @@ if __name__ == "__main__":
                 print(f'model_name =    {model_name}')
                 file1.write(f'\nmodel_name =    {model_name}\n')
                 
-                result = subprocess.run(['ollama', 'run', model_name,f'"Why is the sky blue?"','--verbose'], capture_output=True, text=True, check=True)
+                result = subprocess.run(['ollama', 'run', model_name, '--verbose', '--', f'"Why is the sky blue?"'], capture_output=True, text=True, check=True)
                 std_err = result.stderr
                 #print(result.stderr)
                 file1.write(std_err)
