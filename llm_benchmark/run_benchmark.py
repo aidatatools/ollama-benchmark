@@ -96,7 +96,7 @@ def run_benchmark(models_file_path, benchmark_file_path, type, ollamabin: str = 
                                     img_file_path = str(files('llm_benchmark').joinpath(f'data/img/{img}'))
                                     prompt = f"{one_prompt['prompt']} {img_file_path}"
                                     print(f"prompt = {prompt}")
-                                    result = subprocess.run([ollamabin, 'run', model_name, '--verbose', '--', one_prompt['prompt']], capture_output=True, text=True, check=True, encoding='utf-8')
+                                    result = subprocess.run([ollamabin, 'run', model_name, '--verbose', '--', prompt], capture_output=True, text=True, check=True, encoding='utf-8')
                                     std_err = result.stderr
                                     #print(result.stderr)
                                     file1.write(std_err)

@@ -17,6 +17,12 @@ pytestmark = pytest.mark.skipif(os.name != "posix", reason="POSIX executable/wra
 
 @pytest.fixture
 def fake_ollama(tmp_path, monkeypatch):
+    package = tmp_path / "fixture package"
+    images = package / "data" / "img"
+    images.mkdir(parents=True)
+    for name in ("image.png", "second image.png"):
+        (images / name).write_bytes(b"synthetic fixture")
+    monkeypatch.setattr(run_benchmark, "files", lambda _: package)
     record = tmp_path / "arguments.jsonl"
     executable = tmp_path / "ollama"
     executable.write_text(
@@ -83,7 +89,8 @@ def test_prompt_is_literal_data(tmp_path, fake_ollama, model, prompt):
 
     assert result == {model: "21.00"}
     assert json.loads(record.read_text(encoding="utf-8").splitlines()[0]) == {
-        "prompt": prompt, "verbose": True,
+        "prompt": (f"{prompt} {run_benchmark.files('llm_benchmark').joinpath('data/img/image.png')}"
+                   if model.startswith("llava") else prompt), "verbose": True,
     }
 
 
@@ -102,7 +109,8 @@ def test_forwarded_translation_prompt_does_not_become_an_option(tmp_path, fake_o
 
     assert result == {model: "21.00"}
     assert json.loads(record.read_text(encoding="utf-8").splitlines()[0]) == {
-        "prompt": prompt, "verbose": True,
+        "prompt": (f"{prompt} {run_benchmark.files('llm_benchmark').joinpath('data/img/image.png')}"
+                   if model.startswith("llava") else prompt), "verbose": True,
     }
 
 
@@ -115,3 +123,20 @@ def test_standalone_benchmark_still_collects_verbose_metrics(tmp_path, fake_olla
     )
     assert "21.0" in result.stdout
     assert json.loads(record.read_text(encoding="utf-8").splitlines()[0])["verbose"] is True
+
+
+def test_llava_passes_each_image_path(tmp_path, fake_ollama):
+    executable, record = fake_ollama
+    model_file, benchmark_file = write_benchmark(tmp_path, "llava:latest", "--describe this")
+    benchmark = yaml.safe_load(benchmark_file.read_text())
+    benchmark["modeltypes"][0]["prompts"][0]["keywords"] = "image.png,second image.png"
+    benchmark_file.write_text(yaml.safe_dump(benchmark))
+    assert run_benchmark.run_benchmark(
+        str(model_file), str(benchmark_file), "instruct", str(executable)
+    ) == {"llava:latest": "21.00"}
+    calls = [json.loads(line) for line in record.read_text().splitlines()]
+    images = run_benchmark.files("llm_benchmark").joinpath("data/img")
+    assert calls == [
+        {"prompt": f"--describe this {images / name}", "verbose": True}
+        for name in ("image.png", "second image.png")
+    ]
