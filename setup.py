@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='llm_benchmark',
-    version='0.5.5',
+    version='0.5.6',
     author='Jason Chuang',
     author_email='chuangtcee@gmail.com',
     description='LLM Benchmark',
@@ -25,14 +25,15 @@ setup(
     ],
     python_requires='>=3.11',
     install_requires=[
-        'typer==0.21.0',
+        'typer==0.27.3',
         'ollama==0.6.1',
         'pyyaml==6.0.1',
         'requests==2.33.0',
+        'certifi>=2026.10.19',
         'psutil==5.9.8',
         'GPUtil==1.4.0',
         'lib-platform==1.2.10',
-        'setuptools==83.0.0',
+        'setuptools==84.1.0',
     ],
     entry_points={
         'console_scripts': [
@@ -45,6 +46,6 @@ setup(
     # so changes in your source code are immediately reflected
     # without needing to reinstall
     options={'bdist_wheel': {'universal': False}},
-    setup_requires=['setuptools>=80.9.0', 'wheel'],
+    setup_requires=['setuptools>=84.1.0', 'wheel'],
     editable=True
 )
